@@ -1,0 +1,313 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link rel="stylesheet" type="text/css" href="css/public.css">
+    <link rel="stylesheet" type="text/css" href="css/pay_success.css">
+    <title>支付成功</title>
+</head>
+
+<body>
+    <div id="header">
+        <div class="top">
+            <div class="containe">
+                <div class="left">
+                    <a href="index.html"><img src="images/home_icon.png" alt="">文的首页</a>
+                    |
+                    <span class="loginzt">
+                        <a href="login.html" v-if="!isLogin">登录</a>
+                        &nbsp;&nbsp;&nbsp;&nbsp;
+                        <a  href="#" v-if="isLogin" @click="logout">退出登录</a>
+                        <a href="register.html" v-else>免费注册</a>
+                    </span>
+                </div>
+                <ul class="shop" v-if="isLogin">
+                    <li><a href="order.html">我的订单</a></li>
+                    <li><a href="user.html">我的文的</a></li>
+                    <li>|</li>
+                    <li><a href="shop_cart.html">购物车</a><sup>{{cartCount}}</sup></li>
+                    <!-- <li>|</li>
+                    <li>
+                        <a href="javascript:void(0)"><img src="images/favorite_icon.png" alt="">收藏夹</a>
+                    </li>
+                    <li><a href="javascript:void(0)">服务中心</a></li> -->
+                </ul>
+            </div>
+        </div>
+        <div class="in_tbody">
+            <div class="containe">
+                <div class="logo">
+                    <a href="index.html">
+                        <img :src="logoImg" alt="文的电器">
+                    </a>
+                </div>
+                <div>
+                    <h1>
+                        <a href="index.html">
+                            <img src="images/logo_title.png" alt="">
+                        </a>
+                    </h1>
+                    <div class="search">
+                        <input type="text" name="search" placeholder="请输入关键字搜索" v-model="keyWord">
+                        <button @click="searchPro">搜索</button>
+                    </div>
+                </div>
+                <div class="header_ad">
+                    <a href="shop_list.html"><img src="images/pro1.png" alt=""></a>
+                    <a href="shop_list.html"><img src="images/pro2.png" alt=""></a>
+                </div>
+            </div>
+        </div>
+        <div class="nav">
+            <div class="containe">
+                <div class="menu">
+                    <h2 class="active">所有产品分类 <img src="images/arrows_icon.png" alt=""></h2>
+                    <ul class="submenu">
+                        <li>
+                            <h3><a href="shop_list.html">厨房小电</a></h3>
+                            <ul>
+                                <li>
+                                    <a href="shop_list.html">电饭煲</a>
+                                </li>
+                                <li>
+                                    <a href="shop_list.html">电磁炉炉</a>
+                                </li>
+                                <li>
+                                    <a href="shop_list.html">电压力锅</a>
+                                </li>
+                                <li>
+                                    <a href="shop_list.html">电火锅</a>
+                                </li>
+                            </ul>
+                        </li>
+                        <li><i></i></li>
+                        <li>
+                            <h3><a href="shop_list.html">炊具炖锅</a></h3>
+                            <ul>
+                                <li>
+                                    <a href="shop_list.html">烹任锅具</a>
+                                </li>
+                                <li>
+                                    <a href="shop_list.html">炒锅</a>
+                                </li>
+                                <li>
+                                    <a href="shop_list.html">压力锅</a>
+                                </li>
+                                <li>
+                                    <a href="shop_list.html">蒸锅</a>
+                                </li>
+                                <li>
+                                    <a href="shop_list.html">炖锅</a>
+                                </li>
+                            </ul>
+                        </li>
+                        <li><i></i></li>
+                        <li>
+                            <h3><a href="shop_list.html">养生水杯</a></h3>
+                            <ul>
+                                <li>
+                                    <a href="shop_list.html">电热水壶</a>
+                                </li>
+                                <li>
+                                    <a href="shop_list.html">养生壶</a>
+                                </li>
+                                <li>
+                                    <a href="shop_list.html">豆浆机</a>
+                                </li>
+                                <li>
+                                    <a href="shop_list.html">保温壶</a>
+                                </li>
+                            </ul>
+                        </li>
+                        <li><i></i></li>
+                        <li>
+                            <h3><a href="shop_list.html">热卖产品</a></h3>
+                            <ul>
+                                <li>
+                                    <a href="shop_list.html">电饭煲</a>
+                                </li>
+                                <li>
+                                    <a href="shop_list.html">电压力锅</a>
+                                </li>
+                                <li>
+                                    <a href="shop_list.html">炖锅</a>
+                                </li>
+                                <li>
+                                    <a href="shop_list.html">电热水壶</a>
+                                </li>
+                            </ul>
+                        </li>
+                    </ul>
+                </div>
+                <ul class="subnav">
+                    <li class="active">
+                        <a href="index.html">首页</a>
+                    </li>
+                    <li>
+                        <a href="shop_list.html?type=商品列表">商品列表</a>
+                    </li>
+                    <li>
+                        <a href="shop_list.html?type=炊具炖锅">炊具炖锅</a>
+                    </li>
+                    <li>
+                        <a href="shop_list.html?type=厨房小电">厨房小电</a>
+                    </li>
+                    <li>
+                        <a href="shop_list.html?type=爆款推荐">爆款推荐</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </div>
+    <div id="middle">
+        <ul class="crumbs">
+            <li><a href="index.html">首页></a></li>
+            <li><a href="user.html">我的购物车></a></li>
+            <li><a href="javascript:void(0)">确认支付</a></li>
+        </ul>
+        <div class="containe">
+            <div class="thead">
+                <h2>结算页</h2>
+                <ul class="progressbar">
+                    <li class="done">
+                        <span>1</span>
+                        <h5>1.我的购物车</h5>
+                    </li>
+                    <li class="done">
+                        <span>2</span>
+                        <h5>2.核对定单信息</h5>
+                    </li>
+                    <li class="on">
+                        <span>3</span>
+                        <h5>3.确认支付</h5>
+                    </li>
+                    <li>
+                        <span>4</span>
+                        <h5>4.确认收货</h5>
+                    </li>
+                </ul>
+            </div>
+            <div class="main">
+                <div class="state">
+                    <img src="images/success_icon.png" alt="">
+                </div>
+                <div class="pay_info">
+                    <h3>恭喜您，支付成功啦！</h3>
+                    <span>您已成功支付<em>￥{{orderProce}} 元 随机减（{{money}}元）</em><span>订单编号：{{orderId}}</span></span>
+                    <p>温馨提示：您已支付成功，马上为您发货。订单状态更新可能在短期延迟，建议您半小时后再查询您的支付情况。</p>
+                    <div>
+                        <span>你还可以</span>
+                        <a href="shop_list.html">继续购物</a>
+                        <a :href="'order_details.html?orderId='+orderId">查看订单</a>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+
+
+    </div>
+    <div id="footer">
+        <ul class="footer_head">
+            <li>
+                <a href="#"><img src="images/b_icon1.png" alt=""></a>
+                <h4><a href="#">正品保障</a></h4><br/>
+                <span><a href="#">正品保障，提供发票</a></span>
+            </li>
+            <li>
+                <a href="#"><img src="images/b_icon2.png" alt=""></a>
+                <h4><a href="#">急速物流</a></h4><br/>
+                <span><a href="#">急速物流，急速送达</a></span>
+            </li>
+            <li>
+                <a href="#"><img src="images/b_icon3.png" alt=""></a>
+                <h4><a href="#">无忧售后</a></h4><br/>
+                <span><a href="#">七天无理由退换货</a></span>
+            </li>
+            <li>
+                <a href="#"><img src="images/b_icon4.png" alt=""></a>
+                <h4><a href="#">特色服务</a></h4><br/>
+                <span><a href="#">为您呈现不一样的服务</a></span>
+            </li>
+            <li>
+                <a href="#"><img src="images/b_icon5.png" alt=""></a>
+                <h4><a href="#">帮助中心</a></h4><br/>
+                <span><a href="#">你的购物管家</a></span>
+            </li>
+        </ul>
+        <div class="footer_main">
+            <dl>
+                <dt>购物指南</dt>
+                <dd><a href="javascript:void(0)">购物需知</a></dd>
+                <dd><a href="javascript:void(0)">交易条款</a></dd>
+                <dd><a href="javascript:void(0)">购物流程</a></dd>
+            </dl>
+            <dl>
+                <dt>支付方式</dt>
+                <dd><a href="javascript:void(0)">银行卡支付</a></dd>
+                <dd><a href="javascript:void(0)">支付宝支付</a></dd>
+                <dd><a href="javascript:void(0)">微信支付</a></dd>
+                <dd><a href="javascript:void(0)">快捷支付</a></dd>
+            </dl>
+            <dl>
+                <dt>客户服务</dt>
+                <dd><a href="javascript:void(0)">服务中心</a></dd>
+                <dd><a href="javascript:void(0)">24小时服务</a></dd>
+                <dd><a href="javascript:void(0)">联系客服</a></dd>
+            </dl>
+            <dl>
+                <dt>关于我们</dt>
+                <dd><a href="javascript:void(0)">平价介绍</a></dd>
+                <dd><a href="javascript:void(0)">招商加盟</a></dd>
+                <dd><a href="javascript:void(0)">申请加入</a></dd>
+                <dd><a href="javascript:void(0)">联系我们</a></dd>
+                <dd><a href="javascript:void(0)">新闻中心</a></dd>
+            </dl>
+            <dl>
+                <dt>常见问题</dt>
+                <dd><a href="javascript:void(0)">下单后可以修改订单吗？</a></dd>
+                <dd><a href="javascript:void(0)">订单如保取消</a></dd>
+                <dd><a href="javascript:void(0)">出货后几可以到货</a></dd>
+            </dl>
+            <div>
+                <span class="tel">400-876-0703</span>
+                <small>周一到周五：9:00-18:00</small>
+                <a href="javascript:void(0)">
+                    <img src="images/msg_icon.png" alt=""> 24小时客服热线
+                </a>
+            </div>
+        </div>
+        <div class="copyright">
+            <p class="containe">
+                京公网安备 11000002000001号京ICP证030173号违法和不良信息举报电话：010-59922822
+            </p>
+        </div>
+    </div>
+    <script src="js/jquery-1.7.1.min.js"></script>
+    <script src="js/public.js"></script>
+    <script>
+        new Vue({
+            el:'#middle',
+            data:{
+                orderProce:0,
+                orderId:'',
+                money:0
+            },
+            mounted:function(){
+                var query = GetRequest();
+                if(!query.orderProce||!query.money||!query.orderId){
+                    history.back();
+                    return;
+                }
+                this.orderProce=query.orderProce
+                this.orderId=query.orderId
+                this.money=query.money
+            }
+        })
+    </script>
+</body>
+
+</html>
