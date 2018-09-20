@@ -1,22 +1,19 @@
 <template>
   <div id="app">
+    <shopTop/>
     <router-view/>
+    <shopFooter/>
   </div>
 </template>
 
 <script>
+import shopTop from "@/components/top";
+import shopFooter from "@/components/footer";
 export default {
-  name: 'App'
+  name: 'App',
+  components: {
+    shopTop,
+    shopFooter
+  }
 }
 </script>
-
-<style lang="scss">
-#app {
-  font-family: 'Avenir', Helvetica, Arial, sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  text-align: center;
-  color: #2c3e50;
-  margin-top: 60px;
-}
-</style>

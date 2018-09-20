@@ -4,6 +4,7 @@ import Vue from 'vue'
 import App from './App'
 import router from './router'
 import "./assets/styles/comment.scss"
+import "./assets/styles/public.scss"
 
 Vue.config.productionTip = false
 
