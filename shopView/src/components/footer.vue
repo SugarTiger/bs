@@ -37,21 +37,16 @@
 
 <script>
 export default {
-  data(){
-    return {
-      footerText:'特特手术台上的天上的天使道听途说特殊的'
+  computed:{
+    footerText(){
+      return this.$store.state.shopInfo.info_footer||'';
     }
-  }
+  },
 }
 </script>
 
 <style lang="scss">
-$topFontFamily:SimSun;
-$topAndFooterBgColor:#d2d2d2;
-$navClassifyLiAndproSpanAndDlAndTimeFontSize:14px;
-$proH4AndbottomH4AndDtAndServiceFontSize:16px;
-$bottomColor:#d4d4d4;
-$telFontSize:36px;
+@import '../assets/styles/variable.scss';
 .containe {
     width: 1200px;
     margin: 0 auto;

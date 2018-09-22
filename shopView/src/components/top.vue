@@ -2,20 +2,20 @@
   <div class="top">
             <div class="containe">
                 <div class="left">
-                    <a href="index.html"><img src="../assets/images/home_icon.png" alt="">文的首页</a>
+                    <router-link to="/"><img src="../assets/images/home_icon.png" alt="">文的首页</router-link>
                     |
                     <span class="loginzt">
-                        <a href="login.html" v-if="!isLogin">登录</a>
+                        <router-link to="login" v-if="!isLogin">登录</router-link>
                         &nbsp;&nbsp;&nbsp;&nbsp;
                         <a  href="#" v-if="isLogin" @click="logout">退出登录</a>
-                        <a href="register.html" v-else>免费注册</a>
+                        <router-link to="register" v-else>免费注册</router-link>
                     </span>
                 </div>
                 <ul class="shop" v-if="isLogin">
-                    <li><a href="order.html">我的订单</a></li>
-                    <li><a href="user.html">我的文的</a></li>
+                    <li><router-link to="order">我的订单</router-link></li>
+                    <li><router-link to="user">我的文的</router-link></li>
                     <li>|</li>
-                    <li><a href="shop_cart.html">购物车</a><sup>{{cartCount}}</sup></li>
+                    <li><router-link to="shop_cart">购物车</router-link><sup>{{cartCount}}</sup></li>
                 </ul>
             </div>
         </div>
@@ -30,15 +30,26 @@ export default {
     };
   },
   methods: {
-    logout() {}
+    logout() {
+      this.$util.delToken();
+      localStorage.removeItem("userName");
+      this.$router.go(0);
+    }
+  },
+  mounted() {
+    if (!!this.$util.getToken()) {
+      //已登录
+      this.isLogin = true;
+      this.$api.get("/getCart", null, res => {
+        this.cartCount = res.data.qty;
+      });
+    }
   }
 };
 </script>
 
 <style lang="scss">
-$topAndFooterBgColor:#d2d2d2;
-$topAndNavColor:#666;
-$topFontFamily:SimSun;
+@import "../assets/styles/variable.scss";
 .top {
   width: 100%;
   height: 30px;
