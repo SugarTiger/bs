@@ -9,7 +9,7 @@ const package = require('../package.json');
 
 fs.open('./env.js', 'w', function(err, fd) {
     const buf = 'export default "development";';
-    fs.write(fd, buf, 0, buf.length, 0, function(err, written, buffer) {});
+    // fs.write(fd, buf, 0, buf.length, 0, function(err, written, buffer) {});//低版本nodejs
 });
 
 module.exports = merge(webpackBaseConfig, {
