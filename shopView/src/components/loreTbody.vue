@@ -2,9 +2,9 @@
   <div class="lore_tbody">
             <div class="containe">
                 <div class="logo">
-                    <a href="index.html">
+                    <router-link to="/index">
                         <img src="../assets/images/logo02.png" alt="">
-                    </a>
+                    </router-link>
                 </div>
                 <div class="title">
                     <h1>
@@ -14,7 +14,7 @@
                     <h2>欢迎登录</h2>
                 </div>
                 <p>
-                    <a href="index.html">返回首页</a> |
+                    <router-link to="/index">返回首页</router-link> |
                     <a href="#">帮助中心</a>
                 </p>
             </div>

@@ -20,7 +20,7 @@ const publicKey = fs.readFileSync(path.join(__dirname, '../publicKey.pub'))
 
 app
   .use((ctx, next) => {
-    if (ctx.request.header.host.split(':')[0] === 'localhost' || ctx.request.header.host.split(':')[0] === '127.0.0.1') {
+    if (ctx.request.header.host.split(':')[0] === 'localhost' || ctx.request.header.host.split(':')[0] === '127.0.0.1' || ctx.request.header.host.split(':')[0] === '127.0.0.1:5500') {
       ctx.set('Access-Control-Allow-Origin', '*')
     } else {
       ctx.set('Access-Control-Allow-Origin', SystemConfig.HTTP_server_host)

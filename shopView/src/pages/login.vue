@@ -3,11 +3,11 @@
     <loreTbody/>
         <div class="main">
             <div class="title">
-                <a href="index.html">
+                <router-link to="/index">
                     <img src="../assets/images/small_logo.png" alt="">
-                </a>
+                </router-link>
                 <h3>
-                    <a href="index.html">进入文的商城</a>
+                    <router-link to="/index">进入文的商城</router-link>
                 </h3>
             </div>
             <div class="login">
@@ -22,7 +22,7 @@
                     <label for="pwd">
                         <img src="../assets/images/pwd_icon.png" alt="">
                     </label>
-                    <input type="text" id="pwd" name="pwd" v-model.trim="pwd" placeholder="密码">
+                    <input type="password" id="pwd" name="pwd" v-model.trim="pwd" placeholder="密码">
                     <em class="aw"></em>
                 </div>
                 <div class="yicon">
@@ -33,11 +33,11 @@
                     <span @click="changeYcode">看不清，换一张</span>
                     <em class="aw"></em>
                 </div>
-                <input type="submit" value="登录 " id="login">
+                <input type="submit" value="登录 " id="login" @click="toLogin">
             </div>
             <p>
-                <a href="register.html ">注册文的账号</a> |
-                <a href="# ">忘记密码</a>
+              <router-link to="/register">注册文的账号</router-link> |
+              <a href="# ">忘记密码</a>
             </p>
         </div>
   </div>
@@ -45,6 +45,7 @@
 
 <script>
 import loreTbody from "../components/loreTbody";
+const md5 = require('md5');
 export default {
   components: {
     loreTbody
@@ -63,6 +64,36 @@ export default {
   methods:{
     changeYcode(){
       this.ycodeObj = this.$util.getYM();
+    },
+    toLogin(){
+      if(this.loginname === ''){
+        this.$message.error('用户名不能为空');
+        return;
+      }
+      if(this.pwd === ''){
+        this.$message.error('密码不能为空');
+        return;
+      }
+      if(this.yicon === ''){
+        this.$message.error('请填写验证码');
+        return;
+      }else if(this.yicon!==this.ycodeObj.alt){
+        this.$message.error('验证码填写错误');
+        this.changeYcode();
+        return;
+      }
+      this.$api.post('/login',{
+            loginName:this.loginname,
+            pwd:md5(this.pwd)
+        },(res)=>{
+            if(res.status===1){
+                this.$util.setToken(res.data.token)
+                this.$router.replace({name:'user'});
+                return;
+            }else{
+                this.$message.error(res.msg)
+            }
+        })
     }
   }
 };
@@ -72,13 +103,12 @@ export default {
 @import "../assets/styles/variable.scss";
 #loginPage {
   background-color: $proBottomBgColor;
-  padding: 84px 0;
   .main {
     width: 892px;
     height: 573px;
     background-color: #fff;
     margin: 0 auto;
-    padding-top: 30px;
+    padding: 84px 0;
     .title {
       text-align: center;
       > h3 {

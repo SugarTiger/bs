@@ -9,6 +9,12 @@ import "./assets/styles/public.scss"
 import Http from './utils/http';
 import util from './utils/index';
 import {imgServer} from './utils/config.js';
+import ElementUI from 'element-ui';
+import 'element-ui/lib/theme-chalk/index.css';
+Vue.use(ElementUI);
+// import { Message } from 'element-ui';
+// Vue.prototype.$message = Message;
+
 Vue.prototype.$api = Http;
 Vue.prototype.$util = util;
 Vue.config.productionTip = false
