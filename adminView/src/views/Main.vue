@@ -1,4 +1,6 @@
 <style lang="less">
+
+@import "../../my-theme/index.less";
 @import "./main.less";
 @import "./main.ade011a618ca0378c570.css";
 </style>

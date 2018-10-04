@@ -37,7 +37,8 @@ export default {
         name: "shop_list",
         query: {
           type: "商品列表",
-          keyword: this.keyWord || undefined
+          keyword: this.keyWord || undefined,
+          index:1
         }
       });
     }
@@ -56,11 +57,14 @@ export default {
   width: 100%;
   height: 160px;
   overflow: hidden;
+  background-color: #FF5000;
   .logo {
-    width: 224px;
-    height: 141px;
+    width: 160px;
     float: left;
-    margin-right: 90px;
+    margin-right: 67px;
+    >a{
+      display: block;
+    }
   }
   .containe > div:nth-of-type(2) {
     float: left;

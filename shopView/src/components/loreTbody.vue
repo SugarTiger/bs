@@ -8,7 +8,7 @@
                 </div>
                 <div class="title">
                     <h1>
-                        <span>文的商城</span>
+                        <span>微动商城</span>
                         <span>wendishangcheng</span>
                     </h1>
                     <h2>欢迎登录</h2>

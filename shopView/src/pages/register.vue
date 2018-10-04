@@ -56,7 +56,7 @@
                 </div>
                 <input type="button" value="立即注册" @click="toRegister" id="register">
                 <p>
-                    已有文的账号，
+                    已有微动账号，
                     <router-link to="/login">直接登录</router-link>
                 </p>
             </div>
@@ -197,7 +197,7 @@ export default {
 };
 </script>
 
-<style lang="scss">
+<style lang="scss" scoped>
 @import "../assets/styles/variable.scss";
 #register {
   background-color: $proBottomBgColor;

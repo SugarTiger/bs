@@ -45,14 +45,14 @@ export default {
 }
 </script>
 
-<style lang="scss">
+<style lang="scss" scoped>
 @import '../assets/styles/variable.scss';
 .containe {
     width: 1200px;
     margin: 0 auto;
 }
 #footer {
-    background-color: #000;
+    background-color: #FF5000;
     width: 100%;
     height: 155px;
     .footer_head {

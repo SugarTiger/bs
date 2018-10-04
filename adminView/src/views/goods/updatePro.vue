@@ -78,9 +78,9 @@
                     </FormItem>
                     <FormItem label="商品类目" prop="goods_type">
                         <RadioGroup v-model="formValidate.goods_type">
-                            <Radio label="电饭锅"></Radio>
-                            <Radio label="电压力锅"></Radio>
-                            <Radio label="电炖锅"></Radio>
+                            <Radio label="亚瑟士"></Radio>
+                            <Radio label="阿迪达斯"></Radio>
+                            <Radio label="耐克"></Radio>
                         </RadioGroup>
                     </FormItem>
                     <FormItem label="商品库存" prop="goods_inventory">
@@ -144,7 +144,7 @@ export default {
         goods_marketPrice: "",
         goods_price: "",
         goods_status: true,
-        goods_type: "电饭锅",
+        goods_type: "亚瑟士",
         goods_color: "",
         goods_capacity: "",
         goods_integral: "",

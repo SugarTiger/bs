@@ -4,7 +4,8 @@
                 <div class="menu"></div>
                 <ul class="subnav">
                     <li :class="{active:i===index}" v-for="(nav,i) in navList" :key="i">
-                      <router-link :to="nav.to">{{nav.label}}</router-link>
+                      <!-- <router-link :to="nav.to">{{nav.label}}</router-link> -->
+                      <a href="javascript:void(0)" @click="toView(nav)">{{nav.label}}</a>
                     </li>
                 </ul>
             </div>
@@ -16,7 +17,8 @@ export default {
     index:{
       type:Number,
       default:0
-    }
+    },
+    changeEvent:Boolean
   },
   data(){
     return {
@@ -24,44 +26,58 @@ export default {
         {
           label:'首页',
           to:'index',
+          index:0
         },
         {
           label:'商品列表',
           to:{
             name:'shop_list',
             query:{
-              type:'商品列表'
+              type:'商品列表',
+              index:1
+            }
+          }
+        },
+        {
+          label:'亚瑟士',
+          to:{
+            name:'shop_list',
+            query:{
+              type:'亚瑟士',
+          index:2
             }
           },
         },
         {
-          label:'炊具炖锅',
+          label:'阿迪达斯',
           to:{
             name:'shop_list',
             query:{
-              type:'炊具炖锅'
+              type:'阿迪达斯',
+          index:3
             }
           },
         },
         {
-          label:'厨房小电',
+          label:'耐克',
           to:{
             name:'shop_list',
             query:{
-              type:'厨房小电'
-            }
-          },
-        },
-        {
-          label:'爆款推荐',
-          to:{
-            name:'shop_list',
-            query:{
-              type:'爆款推荐'
+              type:'耐克',
+          index:4
             }
           },
         },
       ]
+    }
+  },
+  methods:{
+    toView(nav){
+      if(this.changeEvent){
+        this.$emit('changeTab',nav)
+      }else{
+        this.$router.replace(nav.to)
+      }
     }
   }
 }

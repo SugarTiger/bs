@@ -2,7 +2,7 @@
   <div class="top">
             <div class="containe">
                 <div class="left">
-                    <router-link to="/"><img src="../assets/images/home_icon.png" alt="">文的首页</router-link>
+                    <router-link to="/"><img src="../assets/images/home_icon.png" alt="">微动首页</router-link>
                     |
                     <span class="loginzt">
                         <router-link to="login" v-if="!isLogin">登录</router-link>
@@ -13,7 +13,7 @@
                 </div>
                 <ul class="shop" v-if="isLogin">
                     <li><router-link to="order">我的订单</router-link></li>
-                    <li><router-link to="user">我的文的</router-link></li>
+                    <li><router-link to="user">我的微动</router-link></li>
                     <li>|</li>
                     <li><router-link to="shop_cart">购物车</router-link><sup>{{cartCount}}</sup></li>
                 </ul>
@@ -25,9 +25,13 @@
 export default {
   data() {
     return {
-      cartCount: 0,
       isLogin: false
     };
+  },
+  computed:{
+    cartCount(){
+      return this.$store.state.cartCount;
+    }
   },
   methods: {
     logout() {
@@ -40,15 +44,13 @@ export default {
     if (!!this.$util.getToken()) {
       //已登录
       this.isLogin = true;
-      this.$api.get("/getCart", null, res => {
-        this.cartCount = res.data.qty;
-      });
+      this.$store.commit('getCartCount');
     }
   }
 };
 </script>
 
-<style lang="scss">
+<style lang="scss" scoped>
 @import "../assets/styles/variable.scss";
 .top {
   width: 100%;

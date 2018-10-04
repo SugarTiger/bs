@@ -30,5 +30,25 @@ export default new Router({
       name: 'register',
       component: () => import('@/pages/register')
     },
+    {
+      path: '/user',
+      name: 'user',
+      component: () => import('@/pages/user')
+    },
+    {
+      path: '/pro_details',
+      name: 'pro_details',
+      component: () => import('@/pages/pro_details')
+    },
+    {
+      path: '/shop_list',
+      name: 'shop_list',
+      component: () => import('@/pages/shop_list')
+    },
+    {
+      path: '/shop_cart',
+      name: 'shop_cart',
+      component: () => import('@/pages/shop_cart')
+    },
   ]
 })

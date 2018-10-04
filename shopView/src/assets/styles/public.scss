@@ -44,7 +44,6 @@ img {
 
 body,
 html {
-    background-color: #000;
     width: 100%;
     min-width: 1200px;
 }
@@ -400,71 +399,71 @@ li {
 #middle {
     background-color: #fff;
     overflow: hidden;
-    .crumbs {
-        @extend .containe;
-        overflow: hidden;
-        margin: 15px auto 30px auto;
-        li {
-            float: left;
-            a {
-                color: $topAndNavColor;
-                font-size: $navClassifyLiAndproSpanAndDlAndTimeFontSize;
-            }
-        }
-        li:last-of-type {
-            width: 135px;
-            white-space: nowrap;
-            text-overflow: ellipsis;
-            overflow: hidden;
-            color: $activeBgColor;
-            a {
-                color: $activeBgColor;
-            }
-        }
-    }
-    // 猜你喜欢
-    .you_like {
-        text-align: center;
-        margin: 35px 0 60px 0;
-        >h3 {
-            height: 38px;
-            line-height: 38px;
-            padding-left: 18px;
-            background-color: $proBottomBgColor;
-            font-size: $proH4AndbottomH4AndDtAndServiceFontSize;
-            color: $topAndNavColor;
-            text-align: left;
-        }
-        >ul {
-            overflow: hidden;
-            display: inline-block;
-            margin-top: 20px;
-            li {
-                float: left;
-                margin: 0 10px;
-                cursor: pointer;
-                a {
-                    display: block;
-                    img {
-                        display: block;
-                    }
-                }
-                span {
-                    display: block;
-                    text-align: center;
-                    font-size: 24px;
-                    color: #a40a0a;
-                    margin-top: 25px;
-                }
-            }
-            li:first-of-type {
-                margin-left: 0px;
-            }
-            li:last-of-type {
-                margin-right: 0px;
-            }
-        }
-    }
+}
+.crumbs {
+  @extend .containe;
+  overflow: hidden;
+  margin: 15px auto 30px auto;
+  li {
+      float: left;
+      a {
+          color: $topAndNavColor;
+          font-size: $navClassifyLiAndproSpanAndDlAndTimeFontSize;
+      }
+  }
+  li:last-of-type {
+      width: 135px;
+      white-space: nowrap;
+      text-overflow: ellipsis;
+      overflow: hidden;
+      color: $activeBgColor;
+      a {
+          color: $activeBgColor;
+      }
+  }
+}
+// 猜你喜欢
+.you_like {
+  text-align: center;
+  margin: 35px 0 60px 0;
+  >h3 {
+      height: 38px;
+      line-height: 38px;
+      padding-left: 18px;
+      background-color: $proBottomBgColor;
+      font-size: $proH4AndbottomH4AndDtAndServiceFontSize;
+      color: $topAndNavColor;
+      text-align: left;
+  }
+  >ul {
+      overflow: hidden;
+      display: inline-block;
+      margin-top: 20px;
+      li {
+          float: left;
+          margin: 0 10px;
+          cursor: pointer;
+          a {
+              display: block;
+              img {
+                  display: block;
+              }
+          }
+          span {
+              display: block;
+              text-align: center;
+              font-size: 24px;
+              color: #a40a0a;
+              margin-top: 25px;
+          }
+      }
+      li:first-of-type {
+          margin-left: 0px;
+      }
+      li:last-of-type {
+          margin-right: 0px;
+      }
+  }
 }
 
 //middle end

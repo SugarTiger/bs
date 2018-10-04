@@ -1,6 +1,6 @@
 <template>
   <div id="app">
-    <shopTop/>
+    <shopTop ref="shopTop"/>
     <router-view/>
     <shopFooter/>
   </div>

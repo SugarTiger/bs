@@ -7,7 +7,7 @@
                     <img src="../assets/images/small_logo.png" alt="">
                 </router-link>
                 <h3>
-                    <router-link to="/index">进入文的商城</router-link>
+                    <router-link to="/index">进入微动商城</router-link>
                 </h3>
             </div>
             <div class="login">
@@ -36,7 +36,7 @@
                 <input type="submit" value="登录 " id="login" @click="toLogin">
             </div>
             <p>
-              <router-link to="/register">注册文的账号</router-link> |
+              <router-link to="/register">注册微动账号</router-link> |
               <a href="# ">忘记密码</a>
             </p>
         </div>
@@ -99,7 +99,7 @@ export default {
 };
 </script>
 
-<style lang="scss">
+<style lang="scss" scoped>
 @import "../assets/styles/variable.scss";
 #loginPage {
   background-color: $proBottomBgColor;

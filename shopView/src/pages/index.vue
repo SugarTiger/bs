@@ -1,8 +1,8 @@
 <template>
   <div id="index">
     <topBody/>
-    <banner/>
     <navTab/>
+    <banner/>
     <div class="new_goods">
             <ul>
                 <li v-for="(pro,i) in proList" :key="i">
@@ -51,7 +51,7 @@ export default {
 };
 </script>
 
-<style lang="scss">
+<style lang="scss" scoped>
 @import "../assets/styles/variable.scss";
 .new_goods {
   width: 1200px;
@@ -79,19 +79,19 @@ export default {
       }
       img {
         width: 291px;
-        height: 196px;
+        height: 291px;
         margin: 0 auto;
         display: block;
       }
       div {
         background-color: $proBottomBgColor;
         width: 100%;
-        height: 75px;
+        height: 120px;
         border-top: 1px solid $topAndFooterBgColor;
         color: $topAndNavColor;
         h4 {
           margin-top: 6px;
-          padding-left: 40px;
+          padding:0 10px;
           > a {
             font-weight: normal;
             color: $topAndNavColor;
@@ -102,7 +102,7 @@ export default {
         .member_price {
           font-size: $navClassifyLiAndproSpanAndDlAndTimeFontSize;
           margin-bottom: 3px;
-          padding-left: 40px;
+          padding:0 10px;
         }
         .member_price {
           color: $activeBgColor;

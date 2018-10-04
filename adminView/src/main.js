@@ -6,6 +6,7 @@ import App from './app.vue';
 import 'iview/dist/styles/iview.css';
 import util from './libs/util';
 import { getToken } from "./libs/tool";
+
 Vue.use(iView);
 Vue.prototype.axios = util.ajax
 Date.prototype.Format = util.Format

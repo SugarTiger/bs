@@ -34,6 +34,7 @@ Http.prototype.ajax = function (url, data, ons) {
   })
 }
 Http.prototype.get = function (url, data, ons) {
+  this.type = 'GET';
   this.ajax(url, data, ons);
 }
 Http.prototype.post = function (url, data, ons) {

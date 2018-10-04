@@ -5,7 +5,7 @@
                 <Card style="width:320px" class="wdLogoBox">
                     <div style="text-align:center">
                         <img :src="imgServer+wdLogo">
-                        <h3>文的电器专卖Logo</h3>
+                        <h3>微动鞋子商城Logo</h3>
                         <Upload :format="['jpg','jpeg','png']" :headers="headers" :on-success="uploadSuccess" action="//127.0.0.1:3000/upload">
                             <Button type="ghost" icon="ios-cloud-upload-outline">修改Logo</Button>
                         </Upload>
@@ -14,7 +14,7 @@
             </Col>
             <Col span="16">
             <Form label-position="top">
-                <h2>文的商城底部信息：</h2>
+                <h2>微动商城底部信息：</h2>
                 <FormItem label="">
                     <Input v-model="footer" disabled></Input>
                 </FormItem>

@@ -7,7 +7,7 @@
             <Button @click="handleCancel" type="ghost" >重置</Button>
         </Row>
         <Row :style="{marginTop:'10px'}">
-            <Table :loading="loading" ref="table" :border="true" :columns="proColumns" :data="proList"></Table>
+            <Table :loading="loading" ref="table" :border="true" :columns="proColumns" :data="proList" width="100%"></Table>
         </Row>
     </div>
 </template>
