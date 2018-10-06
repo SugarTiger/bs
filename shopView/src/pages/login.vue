@@ -3,9 +3,6 @@
     <loreTbody/>
         <div class="main">
             <div class="title">
-                <router-link to="/index">
-                    <img src="../assets/images/small_logo.png" alt="">
-                </router-link>
                 <h3>
                     <router-link to="/index">进入微动商城</router-link>
                 </h3>
@@ -77,7 +74,7 @@ export default {
       if(this.yicon === ''){
         this.$message.error('请填写验证码');
         return;
-      }else if(this.yicon!==this.ycodeObj.alt){
+      }else if(this.yicon.toLocaleLowerCase()!==this.ycodeObj.alt.toLocaleLowerCase()){
         this.$message.error('验证码填写错误');
         this.changeYcode();
         return;

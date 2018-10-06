@@ -12,15 +12,6 @@
                     </div>
                 </Card>
             </Col>
-            <Col span="16">
-            <Form label-position="top">
-                <h2>微动商城底部信息：</h2>
-                <FormItem label="">
-                    <Input v-model="footer" disabled></Input>
-                </FormItem>
-                <Button type="primary" @click="updateFooter">更新底部信息</Button>
-            </Form>
-            </Col>
         </Row>
         <Row :style="{marginTop: '20px',height:'150px'}" type="flex"  align="middle">
           <Col span="2"><h2>轮播图列表</h2></Col>
@@ -34,8 +25,19 @@
             <Table :border="true" :columns="bannerColumns" :data="bannerList"></Table>
         </Row>
         <h2 :style="{marginTop: '20px'}">轮播图播放间隙（单位：秒）</h2>
-        <InputNumber :max="10" :min="1" v-model="bannerTiem"></InputNumber>
         <Button type="primary" @click="updateTime">提交修改</Button>
+        <InputNumber :max="10" :min="1" v-model="bannerTiem"></InputNumber>
+        <Row>
+          <Col span="16">
+            <Form label-position="top">
+                <h2>微动商城底部信息：</h2>
+                <FormItem label="">
+                    <Input v-model="footer" disabled></Input>
+                </FormItem>
+                <Button type="primary" @click="updateFooter">更新底部信息</Button>
+            </Form>
+            </Col>
+        </Row>
     </div>
 </template>
 <style lang="less" scoped>

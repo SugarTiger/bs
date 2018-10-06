@@ -1,6 +1,6 @@
 <template>
   <div id="shopList">
-    <topBody/>
+    <topBody searchEvent @searchEvent="searchEvent"/>
     <navTab changeEvent @changeTab="changeTab" :index="navIndex"/>
     <ul class="crumbs">
         </ul>
@@ -222,6 +222,11 @@ export default {
     });
   },
   methods: {
+    searchEvent(keyWord){
+      this.keyword = keyWord;
+      this.type = '';
+      this.getProList();
+    },
     getProList: function() {
       var that = this;
       this.$api.get(

@@ -274,7 +274,9 @@ export default {
           confirmButtonText: "去登陆",
           type: "warning",
           callback: action => {
-            this.$router.push("/login");
+            if(action === 'confirm'){
+              this.$router.push("/login");
+            }
           }
         });
         return;
@@ -287,7 +289,9 @@ export default {
           confirmButtonText: "去登陆",
           type: "warning",
           callback: action => {
-            this.$router.push("/login");
+            if(action === 'confirm'){
+              this.$router.push("/login");
+            }
           }
         });
         return;
@@ -307,7 +311,9 @@ export default {
           confirmButtonText: "去登陆",
           type: "warning",
           callback: action => {
-            this.$router.push("/login");
+            if(action === 'confirm'){
+              this.$router.push("/login");
+            }
           }
         });
         return;

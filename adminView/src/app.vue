@@ -23,4 +23,8 @@
     width: 100%;
     height: 100%;
 }
+.ivu-btn-primary{
+    background-color: #58BA59 !important;
+    border-color: #58BA59!important;
+}
 </style>

@@ -5,6 +5,7 @@ import store from './store';
 import App from './app.vue';
 import 'iview/dist/styles/iview.css';
 import util from './libs/util';
+// import '../my-theme/index.less';
 import { getToken } from "./libs/tool";
 
 Vue.use(iView);

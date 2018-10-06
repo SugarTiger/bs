@@ -3,13 +3,13 @@
             <div class="containe">
                 <div class="logo">
                     <router-link to="/index">
-                        <img src="../assets/images/logo02.png" alt="">
+                        <img :src="logoImg" alt="">
                     </router-link>
                 </div>
                 <div class="title">
                     <h1>
                         <span>微动商城</span>
-                        <span>wendishangcheng</span>
+                        <span>WeiDongShangCheng</span>
                     </h1>
                     <h2>欢迎登录</h2>
                 </div>
@@ -20,22 +20,36 @@
             </div>
         </div>
 </template>
+<script>
+export default {
+  computed: {
+    logoImg() {
+      return this.$store.state.shopInfo.info_logo || "";
+    }
+  }
+}
+</script>
+
 <style lang="scss" scoped>
 @import "../assets/styles/variable.scss";
 .lore_tbody {
   width: 100%;
   height: 144px;
-  background-color: #000;
+  background-color: #FF5000;
   .containe {
     width: 892px;
     margin: 0 auto;
     overflow: hidden;
     .logo {
-      width: 187px;
+      width: 130px;
       height: 124px;
       float: left;
       margin-right: 18px;
+      a{
+        display: block;
+      }
       img {
+        display: block;
         width: 100%;
       }
     }

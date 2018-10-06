@@ -136,36 +136,36 @@ export const appRouter = [{
             }
         }]
     },
-    {
-        path: '/orderList',
-        icon: 'ios-folder',
-        title: '订单列表',
-        name: 'orderList',
-        component: Main,
-        children: [{
-            path: 'index',
-            title: '订单列表',
-            name: 'orderList',
-            component: resolve => {
-                require(['@/views/order/orderList.vue'], resolve);
-            }
-        }]
-    },
-    {
-        path: '/comment',
-        icon: 'ios-folder',
-        title: '评论列表',
-        name: 'comment',
-        component: Main,
-        children: [{
-            path: 'index',
-            title: '评论列表',
-            name: 'comment',
-            component: resolve => {
-                require(['@/views/comment/index.vue'], resolve);
-            }
-        }]
-    },
+    // {
+    //     path: '/orderList',
+    //     icon: 'ios-folder',
+    //     title: '订单列表',
+    //     name: 'orderList',
+    //     component: Main,
+    //     children: [{
+    //         path: 'index',
+    //         title: '订单列表',
+    //         name: 'orderList',
+    //         component: resolve => {
+    //             require(['@/views/order/orderList.vue'], resolve);
+    //         }
+    //     }]
+    // },
+    // {
+    //     path: '/comment',
+    //     icon: 'ios-folder',
+    //     title: '评论列表',
+    //     name: 'comment',
+    //     component: Main,
+    //     children: [{
+    //         path: 'index',
+    //         title: '评论列表',
+    //         name: 'comment',
+    //         component: resolve => {
+    //             require(['@/views/comment/index.vue'], resolve);
+    //         }
+    //     }]
+    // },
     {
         path: '/admin',
         icon: 'ios-folder',

@@ -97,13 +97,12 @@
                         </Col>
                       </Row>
                     </FormItem>
-                    <FormItem label="商品容量" prop="goods_capacity">
+                    <FormItem label="商品尺码" prop="goods_capacity">
                         <Row>
                             <Col span="6">
-                                <Input v-model="formValidate.goods_capacity" placeholder="商品容量"></Input>
+                                <Input v-model="formValidate.goods_capacity" placeholder="商品尺码"></Input>
                             </Col>
                             <Col span="5">
-                            （L:升）
                             </Col>
                         </Row>
                     </FormItem>
@@ -175,7 +174,7 @@ export default {
         goods_capacity: [
           {
             required: true,
-            message: "商品容量不能为空"
+            message: "商品尺码不能为空"
           }
         ],
         goods_details: [

@@ -13,7 +13,7 @@
                         </router-link>
                     </h1>
                     <div class="search">
-                        <input type="text" name="search" placeholder="请输入关键字搜索" v-model="keyWord">
+                        <input type="text" name="search" placeholder="请输入关键字搜索" v-model="keyWord" @keyup.enter="searchPro">
                         <button @click="searchPro">搜索</button>
                     </div>
                 </div>
@@ -26,6 +26,9 @@
 </template>
 <script>
 export default {
+  props:{
+    searchEvent:Boolean
+  },
   data() {
     return {
       keyWord: ""
@@ -33,7 +36,10 @@ export default {
   },
   methods: {
     searchPro() {
-      this.$router.push({
+      if(this.searchEvent){
+        this.$emit("searchEvent",this.keyWord)
+      }else{
+        this.$router.push({
         name: "shop_list",
         query: {
           type: "商品列表",
@@ -41,6 +47,8 @@ export default {
           index:1
         }
       });
+      }
+
     }
   },
   computed: {

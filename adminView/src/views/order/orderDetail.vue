@@ -219,7 +219,7 @@ export default {
           align: "center"
         },
         {
-          title: "商品容量",
+          title: "商品尺码",
           key: "goods_capacity",
           align: "center"
         },
