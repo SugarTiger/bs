@@ -1,11 +1,12 @@
 <template>
   <div id="user">
     <topBody/>
-    <navTab/>
+    <navTab :index="-1"/>
     <ul class="crumbs">
             <li>
                 <router-link to="index">首页</router-link>
             </li>
+            <li> > </li>
             <li>
                 <router-link to="user">我的微动</router-link>
             </li>

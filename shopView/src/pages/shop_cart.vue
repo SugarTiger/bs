@@ -226,7 +226,12 @@ export default {
           });
         }
       }
-      location.href = "confirm_order.html?orderPro=" + JSON.stringify(orderPro);
+      this.$router.push({
+        name:'confirm_order',
+        query:{
+          orderPro:JSON.stringify(orderPro)
+        }
+      })
     }
   },
   mounted: function() {

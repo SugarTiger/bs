@@ -261,17 +261,22 @@ export default {
     toSubOrder: function(proId) {
       if (!getToken()) {
         alert("请先登录微动商城！");
-        location.href = "login.html";
+        this.$router.push("login");
         return;
       }
       var orderPro = [{ qty: 1, proId: proId }];
       var href = "confirm_order.html?orderPro=" + JSON.stringify(orderPro);
-      location.href = href;
+      this.$router.push({
+        name:'confirm_order',
+        query:{
+          orderPro:JSON.stringify(orderPro)
+        }
+      })
     },
     addshopcart: function(proId) {
       if (!getToken()) {
         alert("请先登录微动商城！");
-        location.href = "login.html";
+        this.$router.push("login");
         return;
       }
       console.log(proId);

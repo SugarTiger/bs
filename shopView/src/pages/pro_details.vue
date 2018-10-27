@@ -302,8 +302,12 @@ export default {
           proId: proId
         }
       ];
-      var href = "confirm_order.html?orderPro=" + JSON.stringify(orderPro);
-      location.href = href;
+      this.$router.push({
+        name:'confirm_order',
+        query:{
+          orderPro:JSON.stringify(orderPro)
+        }
+      })
     },
     addshopcart: function(proId) {
       if (!this.$util.getToken()) {

@@ -50,5 +50,15 @@ export default new Router({
       name: 'shop_cart',
       component: () => import('@/pages/shop_cart')
     },
+    {
+      path: '/order',
+      name: 'order',
+      component: () => import('@/pages/order')
+    },
+    {
+      path: '/confirm_order',
+      name: 'confirm_order',
+      component: () => import('@/pages/confirm_order')
+    },
   ]
 })
