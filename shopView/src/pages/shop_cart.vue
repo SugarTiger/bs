@@ -194,20 +194,34 @@ export default {
       this.cartList[i].goods_quantity = newQty;
     },
     removePro: function(i) {
-      if (!confirm("确定删除商品吗？")) return;
-      this.removeProHttp(this.cartList[i].goods_id);
-      this.cartList.splice(i, 1);
+      this.$confirm("确定删除商品吗？", "提示", {
+        confirmButtonText: "确定",
+        cancelButtonText: "取消",
+        type: "warning"
+      })
+        .then(action => {
+          this.removeProHttp(this.cartList[i].goods_id);
+          this.cartList.splice(i, 1);
+        })
+        .catch(() => {});
     },
     removeAllPro: function() {
       if (this.checkedCount === 0) return;
-      if (!confirm("确定删除选择的商品吗？")) return;
-      for (var i = 0; i < this.cartList.length; i++) {
-        if (this.cartList[i].checked) {
-          this.removeProHttp(this.cartList[i].goods_id);
-          this.cartList.splice(i, 1);
-          i--;
-        }
-      }
+      this.$confirm("确定删除选择的商品吗？", "提示", {
+        confirmButtonText: "确定",
+        cancelButtonText: "取消",
+        type: "warning"
+      })
+        .then(action => {
+          for (var i = 0; i < this.cartList.length; i++) {
+            if (this.cartList[i].checked) {
+              this.removeProHttp(this.cartList[i].goods_id);
+              this.cartList.splice(i, 1);
+              i--;
+            }
+          }
+        })
+        .catch(() => {});
     },
     removeProHttp: function(proId) {
       this.$api.post("/delCartPro", {
@@ -227,11 +241,11 @@ export default {
         }
       }
       this.$router.push({
-        name:'confirm_order',
-        query:{
-          orderPro:JSON.stringify(orderPro)
+        name: "confirm_order",
+        query: {
+          orderPro: JSON.stringify(orderPro)
         }
-      })
+      });
     }
   },
   mounted: function() {

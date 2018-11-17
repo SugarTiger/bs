@@ -68,16 +68,18 @@ export default {
   background-color: #FF5000;
   .logo {
     width: 160px;
-    float: left;
     margin-right: 67px;
     >a{
       display: block;
     }
   }
+  .containe{
+    height: 100%;
+    display: flex;
+    align-items: center;
+  }
   .containe > div:nth-of-type(2) {
-    float: left;
     width: 405px;
-    padding-top: 31px;
   }
   .search {
     height: 33px;

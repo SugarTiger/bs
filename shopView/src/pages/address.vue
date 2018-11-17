@@ -213,9 +213,9 @@ export default {
         methods: {
             getAddressList: function () {
                 var that = this;
-                http.get('/getAddressList', null, function (res) {
+                this.$api.get('/getAddressList', null, function (res) {
                     that.addressList = res.data;
-                    var addressIndex = GetRequest().addressIndex
+                    var addressIndex = that.$route.query.addressIndex
                     if (addressIndex !== undefined) {
                         that.addressIndex = addressIndex;
                         that.editAddressId = that.addressList[addressIndex].address_id
@@ -229,13 +229,17 @@ export default {
                 })
             },
             removeAddress: function (addressId, i) {
-                if (confirm('确定删除收货地址？')) {
-                    http.post('/delAddress', {
+              this.$confirm('确定删除收货地址？', '提示', {
+                confirmButtonText: '确定',
+                cancelButtonText: '取消',
+                type: 'warning'
+              }).then(action=>{
+                this.$api.post('/delAddress', {
                         addressId: addressId
                     }, function (res) {
                         that.addressList.splice(i, 1)
                     })
-                }
+              }).catch(()=>{})
             },
             editAddress: function (addressId, i) {
                 this.address_receiver = this.addressList[i].address_receiver;
@@ -251,7 +255,7 @@ export default {
             },
             setDefault: function (addressId, i) {
                 var that = this;
-                http.post("/setDefault", {
+                this.$api.post("/setDefault", {
                     addressId: addressId,
                     address_default: true
                 }, function (res) {
@@ -275,19 +279,27 @@ export default {
                     address_email: this.address_email
                 }
                 if (this.editAddressId === undefined) {
-                    http.post("/addAddress", addressObj, function (res) {
-                        var orderPro = GetRequest().orderPro;
+                    this.$api.post("/addAddress", addressObj,  (res) =>{
+                        var orderPro = that.$route.query.orderPro;
                         if (!!orderPro) {
-                            location.href = "confirm_order.html?orderPro=" + orderPro
+                            that.$router.push({
+                              name:'confirm_order',
+                              query:{
+                                isGoToBug:!!this.$router.query.isGoToBug,
+                                orderPro:orderPro
+                              }
+                            });
                         } else {
                             that.addressList.push(addressObj)
                             that.initAddress();
-                            alert('收货地址添加成功')
+                            that.$alert("收货地址添加成功", "成功提示", {
+                              type: "success",
+                            });
                         }
                     })
                 } else {
                     addressObj.address_id = this.editAddressId
-                    http.post("/updateAddress", addressObj, function (res) {
+                    this.$api.post("/updateAddress", addressObj, function (res) {
                         that.addressList[that.addressIndex].address_receiver = addressObj.address_receiver
                         that.addressList[that.addressIndex].address_area = addressObj.address_area
                         that.addressList[that.addressIndex].address_details = addressObj.address_details
@@ -295,8 +307,14 @@ export default {
                         that.addressList[that.addressIndex].address_call_phone = addressObj.address_call_phone
                         that.addressList[that.addressIndex].address_email = addressObj.address_email
                         that.initAddress();
-                        alert('收货地址更新成功');
-                        if(GetRequest().addressIndex!==undefined){history.back()}
+                        that.$alert('收货地址更新成功','成功提示',{
+                          type:'success',
+                          callback:()=>{
+                            if(that.$route.query.addressIndex!==undefined){
+                              that.$router.go(-1);
+                            }
+                          }
+                        })
                     })
                 }
             },

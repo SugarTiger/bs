@@ -107,6 +107,7 @@ export default {
     this.getHosProList();
   },
   mounted() {
+    var that = this;
     // 改变bg高度的函数
     bgH($(".bg"));
     // li点击改变样式
@@ -216,7 +217,7 @@ export default {
         return;
       }
       if (parseFloat(min) > parseFloat(max)) {
-        alert("价格错误");
+        that.$message.error('价格错误');
         return false;
       }
     });
@@ -259,8 +260,8 @@ export default {
       );
     },
     toSubOrder: function(proId) {
-      if (!getToken()) {
-        alert("请先登录微动商城！");
+      if (!this.$util.getToken()) {
+        this.$message.error('请先登录微动商城！');
         this.$router.push("login");
         return;
       }
@@ -269,14 +270,19 @@ export default {
       this.$router.push({
         name:'confirm_order',
         query:{
-          orderPro:JSON.stringify(orderPro)
+          orderPro:JSON.stringify(orderPro),
+          isGoToBug:true
         }
       })
     },
     addshopcart: function(proId) {
-      if (!getToken()) {
-        alert("请先登录微动商城！");
-        this.$router.push("login");
+      if (!this.$util.getToken()) {
+        this.$alert('请先登录微动商城!',{
+            type: 'info',
+            callback:()=>{
+              this.$router.push("login");
+            }
+          })
         return;
       }
       console.log(proId);

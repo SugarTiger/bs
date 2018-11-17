@@ -144,117 +144,143 @@ export default {
     topBody,
     navTab
   },
-  data(){
+  data() {
     return {
-      orderStatus:'',
-        orderList:[],
-        imgServer,
-        tempList:[],
-        keyWords:''
+      orderStatus: "",
+      orderList: [],
+      imgServer,
+      tempList: [],
+      keyWords: ""
+    };
+  },
+  mounted: function() {
+    this.getOrderList();
+  },
+  methods: {
+    getStatus: function(status) {
+      if (!status) {
+        this.orderStatus = "";
+        this.orderList = this.tempList;
+        return;
+      } else {
+        this.orderStatus = status;
+        this.orderList = this.tempList.filter(function(item) {
+          return item.order_status == status;
+        });
+      }
+    },
+    removeOrder: function(orderId, i) {
+      var that = this;
+      this.$confirm("确认删除订单？注意：此项不可恢复！", "提示", {
+        confirmButtonText: "确定",
+        cancelButtonText: "取消",
+        type: "warning"
+      })
+        .then(action => {
+          this.$api.post(
+            "/delOrder",
+            {
+              orderId: orderId
+            },
+            function(res) {
+              if (res.status === 1) {
+                that.orderList.splice(i, 1);
+              }
+            }
+          );
+        })
+        .catch(() => {});
+    },
+    getOrderList: function(status) {
+      var that = this;
+      this.$api.get(
+        "/getOrderList",
+        {
+          type: status
+        },
+        function(res) {
+          that.orderList = res.data;
+          that.orderList.reverse();
+          that.tempList = that.orderList;
+          console.log(that.tempList);
+        }
+      );
+    },
+    updateOrder: function(orderId, newStatus, i) {
+      var that = this;
+      var msg = '';
+      if(newStatus === 0){
+        msg = "确认取消订单？";
+      } else if(newStatus === 4){
+        msg = "确认收到货物了吗？";
+      }
+      this.$confirm(msg, "提示", {
+        confirmButtonText: "确定",
+        cancelButtonText: "取消",
+        type: "warning"
+      })
+        .then(action => {
+          this.$api.post(
+        "/updateOrder",
+        {
+          orderId: orderId,
+          newStatus: newStatus
+        },
+        function(res) {
+          that.$alert("订单操作成功！");
+          that.orderList[i].order_status = newStatus;
+        }
+      );
+        })
+        .catch(() => {});
+    },
+    search: function() {
+      var that = this;
+      if (this.keyWords === "") {
+        this.orderList = this.tempList;
+        return;
+      }
+      this.orderList = this.tempList.filter(function(item) {
+        var orderId = item.order_id.toString();
+        if (orderId.indexOf(that.keyWords) !== -1) {
+          return true;
+        } else {
+          for (var i = 0; i < item.proList.length; i++) {
+            if (
+              item.proList[i].goods_name.indexOf(that.keyWords) !== -1 ||
+              item.proList[i].goods_type.indexOf(that.keyWords) !== -1
+            ) {
+              return true;
+            }
+          }
+          return false;
+        }
+      });
     }
   },
-  mounted:function(){
-        this.getOrderList();
+  filters: {
+    orderStatus: function(val) {
+      switch (val) {
+        case 1:
+          return "待付款";
+        case 2:
+          return "待发货";
+        case 3:
+          return "待收货";
+        case 4:
+          return "待评论";
+        case 5:
+          return "已完成";
+        case 0:
+          return "订单已取消";
+      }
     },
-    methods:{
-        getStatus:function(status){
-            if(!status){
-                this.orderStatus = '';
-                this.orderList = this.tempList;
-                return;
-            }else{
-                this.orderStatus = status
-                this.orderList = this.tempList.filter(function(item){
-                    return item.order_status == status
-                })
-            }
-        },
-        removeOrder:function(orderId,i){
-            if(!confirm('确认删除订单？注意：此项不可恢复！'))return;
-            var that = this;
-            this.$api.post('/delOrder',{
-                orderId:orderId
-            },function(res){
-                if(res.status===1){
-                    that.orderList.splice(i,1)
-                }
-            })
-        },
-        getOrderList:function(status){
-            var that = this;
-            this.$api.get('/getOrderList',{
-                type:status
-            },function(res){
-                that.orderList = res.data
-                that.orderList.reverse()
-                that.tempList = that.orderList
-                console.log(that.tempList)
-            })
-        },
-        updateOrder:function(orderId,newStatus,i){
-            if(newStatus===0){
-                if(!confirm('确认取消订单？')){
-                    return;
-                }
-            }
-            if(newStatus===4){
-                if(!confirm('确认收到货物了吗？')){
-                    return;
-                }
-            }
-            var that = this;
-            this.$api.post('/updateOrder',{
-                orderId:orderId,
-                newStatus:newStatus,
-            },function(res){
-                alert('订单操作成功！')
-                that.orderList[i].order_status = newStatus
-            })
-        },
-        search:function(){
-            var that = this;
-            if(this.keyWords===''){
-                this.orderList = this.tempList;
-                return;
-            }
-            this.orderList = this.tempList.filter(function(item){
-                var orderId = item.order_id.toString()
-                if(orderId.indexOf(that.keyWords)!==-1){
-                    return true;
-                }else{
-                    for(var i=0;i<item.proList.length;i++){
-                        if(item.proList[i].goods_name.indexOf(that.keyWords)!==-1||item.proList[i].goods_type.indexOf(that.keyWords)!==-1){
-                            return true
-                        }
-                    }
-                    return false;
-                }
-            })
-        }
-    },
-    filters:{
-        orderStatus:function(val){
-            switch(val){
-                case 1:
-                    return '待付款';
-                case 2:
-                    return '待发货';
-                case 3:
-                    return '待收货';
-                case 4:
-                    return '待评论';
-                case 5:
-                    return '已完成';
-                case 0:
-                    return '订单已取消';
-            }
-        },
-        formTime:function(val){
-            var t = new Date(val);
-            return t.Format('yyyy-MM-dd hh:mm')
-        }
+    formTime: function(val) {
+      var t = new Date(val);
+      return t.Format("yyyy-MM-dd hh:mm");
     }
-}
+  }
+};
 </script>
 
 <style lang="scss" scoped>
@@ -327,335 +353,335 @@ export default {
           }
         }
       }
-      >li.active {
-              background-color: $activeBgColor;
-            }
+      > li.active {
+        background-color: $activeBgColor;
+      }
     }
   }
   .main {
+    float: left;
+    width: 1012px;
+    .order_nav {
+      width: 100%;
+      height: 47px;
+      background: $proBottomBgColor;
+      > li {
         float: left;
-        width: 1012px;
-        .order_nav {
-            width: 100%;
-            height: 47px;
-            background: $proBottomBgColor;
-            >li {
-                float: left;
-                line-height: 47px;
-                height: 47px;
-                cursor: pointer;
-                padding: 0 30px;
-                margin-right: 18px;
-                    font-size: 14px;
-                  color: #000;
-                a {
-                    font-size: 14px;
-                    color: #000;
-                }
-            }
-            >li:hover,
-            .active {
-              color: $activeBgColor;
-                >a {
-                    color: $activeBgColor;
-                }
-            }
-        }
-        .order_search {
-            float: right;
-            width: 275px;
-            height: 31px;
-            line-height: 31px;
-            background-color: $activeBgColor;
-            margin: 7px 0;
-            >input {
-                float: left;
-                width: 222px;
-                height: 25px;
-                color: #aaaaaa;
-                font-size: $navClassifyLiAndproSpanAndDlAndTimeFontSize;
-                padding-left: 8px;
-                line-height: 25px;
-                outline: none;
-                margin: 3px 0 0 3px;
-            }
-            >button {
-                float: left;
-                background-color: $activeBgColor;
-                cursor: pointer;
-                color: #fff;
-                line-height: 31px;
-                height: 31px;
-                text-align: center;
-                width: 42px;
-            }
-        }
-        .title {
-            clear: both;
-            height: 43px;
-            background-color: #E5E5E5;
-            width: calc(100% - 46px);
-            padding: 0 23px;
-            margin-bottom: 7px;
-            li {
-                float: left;
-                line-height: 43px;
-                color: $topAndNavColor;
-                font-size: $navClassifyLiAndproSpanAndDlAndTimeFontSize;
-            }
-            .all_select {
-                width: 141px;
-                >span {
-                    margin-top: 16px;
-                }
-            }
-            li:nth-of-type(2) {
-                min-width: 244px;
-            }
-            li:nth-of-type(3) {
-                min-width: 125px;
-            }
-            li:nth-of-type(4) {
-                min-width: 83px;
-                text-align: center;
-            }
-            li:nth-of-type(5) {
-                min-width: 115px;
-                text-align: center;
-            }
-            li:nth-of-type(6) {
-                min-width: 146px;
-                text-align: center;
-            }
-            li:nth-of-type(7) {
-                min-width: 100px;
-                text-align: center;
-            }
-        }
-        .order_list {
-            padding-bottom: 20px;
-            >li {
-                overflow: hidden;
-                .order_thead {
-                    overflow: hidden;
-                    height: 35px;
-                    width: 100%;
-                    >li {
-                        height: 35px;
-                        line-height: 35px;
-                        float: left;
-                        color: $topAndNavColor;
-                        font-size: $navClassifyLiAndproSpanAndDlAndTimeFontSize;
-                    }
-                    .time {
-                        margin-left: 23px;
-                        width: 207px;
-                    }
-                    .order_num {
-                        width: 303px;
-                        >span {
-                            color: #000;
-                        }
-                    }
-                    .store_name {
-                        cursor: pointer;
-                        color: #000;
-                    }
-                    .call_me {
-                        color: #000;
-                        cursor: pointer;
-                        margin-left: 95px;
-                    }
-                    .del {
-                        margin-right: 8px;
-                        float: right;
-                        cursor: pointer;
-                        img {
-                            vertical-align: middle;
-                        }
-                    }
-                }
-                .order_main {
-                    overflow: hidden;
-                    padding: 17px 0 17px 17px;
-                    width: calc(100% - 19px);
-                    font-size: $navClassifyLiAndproSpanAndDlAndTimeFontSize;
-                    color: $topAndNavColor;
-                    border: 1px solid #BFBFBF;
-                    a {
-                        font-size: $navClassifyLiAndproSpanAndDlAndTimeFontSize;
-                        color: $topAndNavColor;
-                    }
-                    .checkbox,
-                    .info,
-                    .color,
-                    .price,
-                    .count,
-                    .detail,
-                    .handle {
-                        float: left;
-                    }
-                    .checkbox {
-                        width: auto;
-                        padding-left: 5px;
-                        span {
-                            margin: 2px 0 0 0;
-                        }
-                    }
-                    .info {
-                        overflow: hidden;
-                        width: 472px;
-                        margin-right: 20px;
-                        >a {
-                            float: left;
-                            border: 1px solid $topAndFooterBgColor;
-                            width: 94px;
-                            height: 94px;
-                            margin: 0 15px 0 8px;
-                            img {
-                                display: block;
-                                width: 100%;
-                                height: 100%;
-                            }
-                        }
-                        >div {
-                            float: left;
-                            width: 200px;
-                            >a {
-                                line-height: 19px;
-                                display: block;
-                                margin-bottom: 15px;
-                                font-size: $navClassifyLiAndproSpanAndDlAndTimeFontSize;
-                                color: $topAndNavColor;
-                            }
-                            >p {
-                                margin-top: 5px;
-                                font-size: $navClassifyLiAndproSpanAndDlAndTimeFontSize;
-                                color: $topAndNavColor;
-                                img {
-                                    vertical-align: middle;
-                                    margin-right: 8px;
-                                }
-                            }
-                            p:first-of-type {
-                                color: #556fb5;
-                            }
-                        }
-                        .color {
-                            width: 96px;
-                            margin-left: 45px;
-                        }
-                    }
-                    .color,
-                    .price {
-                        line-height: 19px;
-                    }
-                    .price {
-                        width: 103px;
-                        text-align: center;
-                        margin-right: 40px;
-                    }
-                    .count {
-                        width: 97px;
-                        text-align: center;
-                    }
-                    .detail {
-                        width: 81px;
-                        margin-right: 52px;
-                        >span,
-                        >a {
-                            display: block;
-                            text-align: center;
-                            line-height: 19px;
-                        }
-                        >a{
-                            color: #556fb5;
-                        }
-                    }
-                    .handle {
-                        width: 78px;
-                        .com,
-                        .buy {
-                            cursor: pointer;
-                            line-height: 19px;
-                            text-align: center;
-                            display: block;
-                        }
-                    }
-                }
-            }
-        }
-        .shop {
-            overflow: hidden;
-            margin: 17px 0 0 8px;
-            float: left;
-            >li {
-                float: left;
-                margin-left: 5px;
-                border: 1px solid #DCDCDC;
-                padding: 0 10px;
-                height: 20px;
-                line-height: 20px;
-                text-align: center;
-                color: #666666;
-                font-size: $navClassifyLiAndproSpanAndDlAndTimeFontSize;
-                cursor: pointer;
-            }
-            .all_select {
-                visibility: hidden;
-                border: none;
-                >span {
-                    margin-top: 4px;
-                }
-            }
-        }
-        .all_select,
-        .checkbox {
-            overflow: hidden;
-            >span {
-                display: block;
-                height: 12px;
-                width: 12px;
-                background: url(../assets/images/checkbox_false2.png) no-repeat;
-                cursor: pointer;
-                float: left;
-                margin-right: 6px;
-            }
-            >input {
-                display: none;
-            }
-            >h3 {
-                float: left;
-                color: $topAndNavColor;
-                font-size: $navClassifyLiAndproSpanAndDlAndTimeFontSize;
-                cursor: pointer;
-                font-weight: normal;
-            }
-            .boxchecked {
-                background-image: url(../assets/images/checkbox_true2.png);
-            }
-        }
-    }
-    .page {
-        float: right;
-        margin: 17px 28px 0 0;
-        li {
-            float: left;
-            margin: 0 6px;
-        }
-        .on {
-            a {
-                color: $activeBgColor;
-            }
-        }
-        li:hover {
-            a {
-                color: $activeBgColor;
-            }
-        }
+        line-height: 47px;
+        height: 47px;
+        cursor: pointer;
+        padding: 0 30px;
+        margin-right: 18px;
+        font-size: 14px;
+        color: #000;
         a {
-            font-size: $navClassifyLiAndproSpanAndDlAndTimeFontSize;
+          font-size: 14px;
+          color: #000;
         }
+      }
+      > li:hover,
+      .active {
+        color: $activeBgColor;
+        > a {
+          color: $activeBgColor;
+        }
+      }
     }
+    .order_search {
+      float: right;
+      width: 275px;
+      height: 31px;
+      line-height: 31px;
+      background-color: $activeBgColor;
+      margin: 7px 0;
+      > input {
+        float: left;
+        width: 222px;
+        height: 25px;
+        color: #aaaaaa;
+        font-size: $navClassifyLiAndproSpanAndDlAndTimeFontSize;
+        padding-left: 8px;
+        line-height: 25px;
+        outline: none;
+        margin: 3px 0 0 3px;
+      }
+      > button {
+        float: left;
+        background-color: $activeBgColor;
+        cursor: pointer;
+        color: #fff;
+        line-height: 31px;
+        height: 31px;
+        text-align: center;
+        width: 42px;
+      }
+    }
+    .title {
+      clear: both;
+      height: 43px;
+      background-color: #e5e5e5;
+      width: calc(100% - 46px);
+      padding: 0 23px;
+      margin-bottom: 7px;
+      li {
+        float: left;
+        line-height: 43px;
+        color: $topAndNavColor;
+        font-size: $navClassifyLiAndproSpanAndDlAndTimeFontSize;
+      }
+      .all_select {
+        width: 141px;
+        > span {
+          margin-top: 16px;
+        }
+      }
+      li:nth-of-type(2) {
+        min-width: 244px;
+      }
+      li:nth-of-type(3) {
+        min-width: 125px;
+      }
+      li:nth-of-type(4) {
+        min-width: 83px;
+        text-align: center;
+      }
+      li:nth-of-type(5) {
+        min-width: 115px;
+        text-align: center;
+      }
+      li:nth-of-type(6) {
+        min-width: 146px;
+        text-align: center;
+      }
+      li:nth-of-type(7) {
+        min-width: 100px;
+        text-align: center;
+      }
+    }
+    .order_list {
+      padding-bottom: 20px;
+      > li {
+        overflow: hidden;
+        .order_thead {
+          overflow: hidden;
+          height: 35px;
+          width: 100%;
+          > li {
+            height: 35px;
+            line-height: 35px;
+            float: left;
+            color: $topAndNavColor;
+            font-size: $navClassifyLiAndproSpanAndDlAndTimeFontSize;
+          }
+          .time {
+            margin-left: 23px;
+            width: 207px;
+          }
+          .order_num {
+            width: 303px;
+            > span {
+              color: #000;
+            }
+          }
+          .store_name {
+            cursor: pointer;
+            color: #000;
+          }
+          .call_me {
+            color: #000;
+            cursor: pointer;
+            margin-left: 95px;
+          }
+          .del {
+            margin-right: 8px;
+            float: right;
+            cursor: pointer;
+            img {
+              vertical-align: middle;
+            }
+          }
+        }
+        .order_main {
+          overflow: hidden;
+          padding: 17px 0 17px 17px;
+          width: calc(100% - 19px);
+          font-size: $navClassifyLiAndproSpanAndDlAndTimeFontSize;
+          color: $topAndNavColor;
+          border: 1px solid #bfbfbf;
+          a {
+            font-size: $navClassifyLiAndproSpanAndDlAndTimeFontSize;
+            color: $topAndNavColor;
+          }
+          .checkbox,
+          .info,
+          .color,
+          .price,
+          .count,
+          .detail,
+          .handle {
+            float: left;
+          }
+          .checkbox {
+            width: auto;
+            padding-left: 5px;
+            span {
+              margin: 2px 0 0 0;
+            }
+          }
+          .info {
+            overflow: hidden;
+            width: 472px;
+            margin-right: 20px;
+            > a {
+              float: left;
+              border: 1px solid $topAndFooterBgColor;
+              width: 94px;
+              height: 94px;
+              margin: 0 15px 0 8px;
+              img {
+                display: block;
+                width: 100%;
+                height: 100%;
+              }
+            }
+            > div {
+              float: left;
+              width: 200px;
+              > a {
+                line-height: 19px;
+                display: block;
+                margin-bottom: 15px;
+                font-size: $navClassifyLiAndproSpanAndDlAndTimeFontSize;
+                color: $topAndNavColor;
+              }
+              > p {
+                margin-top: 5px;
+                font-size: $navClassifyLiAndproSpanAndDlAndTimeFontSize;
+                color: $topAndNavColor;
+                img {
+                  vertical-align: middle;
+                  margin-right: 8px;
+                }
+              }
+              p:first-of-type {
+                color: #556fb5;
+              }
+            }
+            .color {
+              width: 96px;
+              margin-left: 45px;
+            }
+          }
+          .color,
+          .price {
+            line-height: 19px;
+          }
+          .price {
+            width: 103px;
+            text-align: center;
+            margin-right: 40px;
+          }
+          .count {
+            width: 97px;
+            text-align: center;
+          }
+          .detail {
+            width: 81px;
+            margin-right: 52px;
+            > span,
+            > a {
+              display: block;
+              text-align: center;
+              line-height: 19px;
+            }
+            > a {
+              color: #556fb5;
+            }
+          }
+          .handle {
+            width: 78px;
+            .com,
+            .buy {
+              cursor: pointer;
+              line-height: 19px;
+              text-align: center;
+              display: block;
+            }
+          }
+        }
+      }
+    }
+    .shop {
+      overflow: hidden;
+      margin: 17px 0 0 8px;
+      float: left;
+      > li {
+        float: left;
+        margin-left: 5px;
+        border: 1px solid #dcdcdc;
+        padding: 0 10px;
+        height: 20px;
+        line-height: 20px;
+        text-align: center;
+        color: #666666;
+        font-size: $navClassifyLiAndproSpanAndDlAndTimeFontSize;
+        cursor: pointer;
+      }
+      .all_select {
+        visibility: hidden;
+        border: none;
+        > span {
+          margin-top: 4px;
+        }
+      }
+    }
+    .all_select,
+    .checkbox {
+      overflow: hidden;
+      > span {
+        display: block;
+        height: 12px;
+        width: 12px;
+        background: url(../assets/images/checkbox_false2.png) no-repeat;
+        cursor: pointer;
+        float: left;
+        margin-right: 6px;
+      }
+      > input {
+        display: none;
+      }
+      > h3 {
+        float: left;
+        color: $topAndNavColor;
+        font-size: $navClassifyLiAndproSpanAndDlAndTimeFontSize;
+        cursor: pointer;
+        font-weight: normal;
+      }
+      .boxchecked {
+        background-image: url(../assets/images/checkbox_true2.png);
+      }
+    }
+  }
+  .page {
+    float: right;
+    margin: 17px 28px 0 0;
+    li {
+      float: left;
+      margin: 0 6px;
+    }
+    .on {
+      a {
+        color: $activeBgColor;
+      }
+    }
+    li:hover {
+      a {
+        color: $activeBgColor;
+      }
+    }
+    a {
+      font-size: $navClassifyLiAndproSpanAndDlAndTimeFontSize;
+    }
+  }
 }
 </style>

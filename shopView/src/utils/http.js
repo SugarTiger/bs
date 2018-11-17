@@ -1,4 +1,5 @@
 import utils from './index';
+import {Message} from 'element-ui';
 var Http = function () {
   this.type = 'GET';
   this.baseUrl = 'http://127.0.0.1:3000/api';
@@ -24,12 +25,12 @@ Http.prototype.ajax = function (url, data, ons) {
           if (result.status !== 0) {
               if (ons) ons(result)
           } else {
-              alert('服务端出错，请联系管理员！')
+            Message.error('服务端出错，请联系管理员！')
           }
       },
       error: function (e) {
           console.error(e)
-          alert('网络出错，请稍后重试')
+          Message.error('网络出错，请稍后重试')
       }
   })
 }

@@ -66,7 +66,7 @@
                         <li>
                             <div class="orderPro">
                                 <router-link :to="{name:'order_details',query:{orderId:orderList[0].order_id}}">
-                                    <img src="../assets/images/pro3_1_1.png" alt="">
+                                    <img :src="imgServer+orderList[0].proList[0].goods_img[0]" alt="">
                                 </router-link>
                                 <div>
                                     <router-link :to="{name:'order_details',query:{orderId:orderList[0].order_id}}">
@@ -140,28 +140,35 @@ export default {
       });
     },
     updateOrder: function(orderId, newStatus) {
-      if (newStatus === 0) {
-        if (!confirm("确认取消订单？")) {
-          return;
-        }
-      }
-      if (newStatus === 4) {
-        if (!confirm("确认收到货物了吗？")) {
-          return;
-        }
+      var msg = '';
+      if(newStatus === 0){
+        msg = "确认取消订单？";
+      } else if(newStatus === 4){
+        msg = "确认收到货物了吗？";
       }
       var that = this;
-      this.$api.post(
+      this.$confirm(msg, "提示", {
+        confirmButtonText: "确定",
+        cancelButtonText: "取消",
+        type: "warning"
+      })
+        .then(action => {
+          this.$api.post(
         "/updateOrder",
         {
           orderId: orderId,
           newStatus: newStatus
         },
         function(res) {
-          alert("订单操作成功！");
+          that.$alert("订单操作成功！", "成功提示", {
+                              type: "success",
+                            });
           that.orderList[0].order_status = newStatus;
         }
       );
+        })
+        .catch(() => {});
+
     }
   },
   filters: {
