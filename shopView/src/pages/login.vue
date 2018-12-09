@@ -23,7 +23,7 @@
                     <em class="aw"></em>
                 </div>
                 <div class="yicon">
-                    <input type="text" name="yicon" v-model.trim="yicon" placeholder="验证码" id="yicon">
+                    <input type="text" name="yicon" v-model.trim="yicon" placeholder="验证码" id="yicon" @keydown.enter="toLogin">
                     <span class="yimg ">
                         <img :src="ycodeObj.url" :alt="ycodeObj.alt" @click="changeYcode">
                     </span>
@@ -85,7 +85,7 @@ export default {
         },(res)=>{
             if(res.status===1){
                 this.$util.setToken(res.data.token)
-                this.$router.replace({name:'user'});
+                location.href = '/'
                 return;
             }else{
                 this.$message.error(res.msg)

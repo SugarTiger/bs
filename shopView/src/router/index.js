@@ -60,5 +60,30 @@ export default new Router({
       name: 'confirm_order',
       component: () => import('@/pages/confirm_order')
     },
+    {
+      path: '/comment',
+      name: 'comment',
+      component: () => import('@/pages/comment')
+    },
+    {
+      path: '/pay',
+      name: 'pay',
+      component: () => import('@/pages/pay')
+    },
+    {
+      path: '/pay_success',
+      name: 'pay_success',
+      component: () => import('@/pages/pay_success')
+    },
+    {
+      path: '/order_details',
+      name: 'order_details',
+      component: () => import('@/pages/order_details')
+    },
+    {
+      path: '/address',
+      name: 'address',
+      component: () => import('@/pages/address')
+    },
   ]
 })

@@ -141,18 +141,20 @@ export default {
       totalPrice: 0,
       selectAddressId: "",
       isShowAddress: true,
-      index: 0
+      index: 0,
+      isGoToBug:false
     };
   },
   mounted: function() {
-    var querty = this.$route.query;
-    if (!querty.orderPro) {
+    var query = this.$route.query;
+    this.isGoToBug = !!query.isGoToBug;
+    if (!query.orderPro) {
       this.$router.replace("index");
       return;
     }
     var that = this;
     this.getAddressList();
-    this.orderProList = JSON.parse(querty.orderPro);
+    this.orderProList = JSON.parse(query.orderPro);
     this.orderProList.forEach(function(item) {
       that.getProDetail(item.proId, item.qty); // 商品详情
     });
@@ -237,7 +239,16 @@ export default {
           orderNote: this.orderNote, // 订单备注
           postage: 0 //运费
         },
-        function(res) {
+        (res)=>{
+          if(this.isGoToBug){
+            that.$router.push({
+                      name:'pay',
+                      query:{
+                        orderId:res.data.orderInfo.order_id
+                      }
+            });
+            return;
+          }
           that.orderProList.map(function(item) {
             that.$api.post(
               "/delCartPro",

@@ -72,6 +72,7 @@ export default {
     li {
       float: left;
       border: 1px solid $topAndFooterBgColor;
+      border-color: #ccc;
       width: 291px;
       a {
         display: block;

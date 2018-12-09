@@ -305,6 +305,7 @@ export default {
       this.$router.push({
         name:'confirm_order',
         query:{
+          isGoToBug:true,
           orderPro:JSON.stringify(orderPro)
         }
       })
