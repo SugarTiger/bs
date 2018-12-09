@@ -22,7 +22,29 @@
           </Col>
         </Row>
         <Row>
+          <!-- 轮播图数据 start -->
             <Table :border="true" :columns="bannerColumns" :data="bannerList"></Table>
+            <Row type="flex" justify="center" align="middle" class="tabelHeader">
+              <Col span="2"><h5>序号</h5></Col>
+              <Col span="8"><h5>预览</h5></Col>
+              <Col span="7"><h5>URL地址</h5></Col>
+              <Col span="2"><h5>对应商品ID</h5></Col>
+              <Col span="5"><h5>操作</h5></Col>
+            </Row>
+            <Row type="flex" justify="center" align="middle" class="dataBox" v-for="(item,i) in bannerList">
+              <Col span="2">{{item.index}}</Col>
+              <Col span="8">
+                <img :src="imgServer+item.img" alt="">
+              </Col>
+              <Col span="7">{{item.url}}</Col>
+              <Col span="2">{{item.goodsId}}</Col>
+              <Col span="5">
+                <div class="active">
+                  <Button type="primary" @click="showImg(item.url)">查看</Button>
+                </div>             
+              </Col>
+            </Row>
+          <!-- 轮播图数据 start -->
         </Row>
         <h2 :style="{marginTop: '20px'}">轮播图播放间隙（单位：秒）</h2>
         <Button type="primary" @click="updateTime">提交修改</Button>
