@@ -7,10 +7,49 @@
             <Button @click="handleCancel" type="ghost" >重置</Button>
         </Row>
         <Row :style="{marginTop:'10px'}">
-            <Table ref="table" :loading="loading"  :border="true" :columns="logColumns" :data="logList"></Table>
+            <!-- <Table ref="table" :loading="loading"  :border="true" :columns="logColumns" :data="logList"></Table> -->
+            <Row type="flex" justify="center" align="middle" class="headerBox">
+              <Col span="1">
+                <h3>序号</h3>
+              </Col>
+              <Col span="2">
+                <h3>管理员名</h3>
+              </Col>
+              <Col span="10">
+                <h3>操作时间</h3>
+              </Col>
+              <Col span="11">
+                <h3>操作事项</h3>
+              </Col>
+            </Row>
+            <Row
+              type="flex"
+              justify="center"
+              align="middle"
+              class="dataBox"
+              v-for="(item,i) in logList"
+            >
+              <Col span="1">
+              {{i+1}}
+              </Col>
+              <Col span="2">
+              {{item.action_admin}}
+              </Col>
+              <Col span="10">
+                {{item.action_date}}
+              </Col>
+              <Col span="11">
+                {{item.action_name}}
+              </Col>
+            </Row>
         </Row>
     </div>
 </template>
+<style lang="less" scoped>
+.dataBox{
+  height: 50px;
+}
+</style>
 
 <script>
 import { imgServer } from "../../libs/globeConfig";

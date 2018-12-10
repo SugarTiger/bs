@@ -7,10 +7,65 @@
             <Button @click="handleCancel" type="ghost" >重置</Button>
         </Row>
         <Row :style="{marginTop:'10px'}">
-            <Table ref="table" :loading="loading"  :border="true" :columns="adminColumns" :data="userList"></Table>
+            <!-- <Table ref="table" :loading="loading"  :border="true" :columns="adminColumns" :data="userList"></Table> -->
+            <Row type="flex" justify="center" align="middle" class="headerBox">
+              <Col span="3">
+                <h3>管理员ID</h3>
+              </Col>
+              <Col span="4">
+                <h3>管理员名</h3>
+              </Col>
+              <Col span="4">
+                <h3>管理员头像</h3>
+              </Col>
+              <Col span="4">
+                <h3>管理员类型</h3>
+              </Col>
+              <Col span="4">
+                <h3>管理员状态</h3>
+              </Col>
+              <Col span="5">
+                <h3>操作</h3>
+              </Col>
+            </Row>
+            <Row
+              type="flex"
+              justify="center"
+              align="middle"
+              class="dataBox"
+              v-for="(item,i) in userList"
+            >
+              <Col span="3">
+                {{item.admin_id}}
+              </Col>
+              <Col span="4">
+                {{item.admin_name}}
+              </Col>
+              <Col span="4">
+                <Avatar size="large" :src="imgServer+item.admin_header"/>
+              </Col>
+              <Col span="4">
+                {{item.admin_type == 1?'超级管理员':'普通管理员'}}
+              </Col>
+              <Col span="4">
+              <span :style="{color:item.admin_status == 1 ? '#080' : '#bd0007'}">{{item.admin_status == 1 ? "已激活" : "已冻结"}}</span>
+              </Col>
+              <Col span="5">
+                <div class="action">
+                  <Button style="margin-top:10px" @click="changeAdminStatue(item)":type='item.admin_status == 1 ? "error" : "info"'>{{item.admin_status == 1 ? "冻结管理员" : "激活管理员"}}</Button>
+                </div>
+              </Col>
+            </Row>
         </Row>
     </div>
 </template>
+<style lang="less" scoped>
+.ivu-avatar-large{
+  width: 80px;
+  height: 80px;
+  border-radius: 50%;
+}
+</style>
 
 <script>
 import { imgServer } from "../../libs/globeConfig";
@@ -122,10 +177,21 @@ export default {
         }
       ],
       searchConName: "",
-      tempList: []
+      tempList: [],
+      imgServer
     };
   },
   methods: {
+    changeAdminStatue(adminItem){
+      this.$Modal.confirm({
+                          title: "提示",
+                          content: "确定更改管理员状态？",
+                          onOk: () => {
+                              var status = adminItem.admin_status==1?0:1
+                              this.changeAdminStatus(adminItem.admin_id,status)
+                          }
+                        });
+    },
     getUserList() {
       this.axios.get("/getAdminList").then(res => {
         if (res.status === 1) {

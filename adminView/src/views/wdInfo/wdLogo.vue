@@ -1,66 +1,100 @@
 <template>
-    <div id="wdInfo">
-        <Row type="flex" justify="center" align="middle">
-            <Col span="8">
-                <Card style="width:320px" class="wdLogoBox">
-                    <div style="text-align:center">
-                        <img :src="imgServer+wdLogo">
-                        <h3>微动鞋子商城Logo</h3>
-                        <Upload :format="['jpg','jpeg','png']" :headers="headers" :on-success="uploadSuccess" action="//127.0.0.1:3000/upload">
-                            <Button type="ghost" icon="ios-cloud-upload-outline">修改Logo</Button>
-                        </Upload>
-                    </div>
-                </Card>
-            </Col>
-        </Row>
-        <Row :style="{marginTop: '20px',height:'150px'}" type="flex"  align="middle">
-          <Col span="2"><h2>轮播图列表</h2></Col>
-          <Col span="4">
-          <Upload :headers="headers" :on-success="addBanner" action="//127.0.0.1:3000/upload">
-            <Button type="primary" icon="ios-cloud-upload-outline">添加轮播图</Button>
-          </Upload>
-          </Col>
-        </Row>
-        <Row>
-          <!-- 轮播图数据 start -->
-            <Table :border="true" :columns="bannerColumns" :data="bannerList"></Table>
-            <Row type="flex" justify="center" align="middle" class="tabelHeader">
-              <Col span="2"><h5>序号</h5></Col>
-              <Col span="8"><h5>预览</h5></Col>
-              <Col span="7"><h5>URL地址</h5></Col>
-              <Col span="2"><h5>对应商品ID</h5></Col>
-              <Col span="5"><h5>操作</h5></Col>
-            </Row>
-            <Row type="flex" justify="center" align="middle" class="dataBox" v-for="(item,i) in bannerList">
-              <Col span="2">{{item.index}}</Col>
-              <Col span="8">
-                <img :src="imgServer+item.img" alt="">
-              </Col>
-              <Col span="7">{{item.url}}</Col>
-              <Col span="2">{{item.goodsId}}</Col>
-              <Col span="5">
-                <div class="active">
-                  <Button type="primary" @click="showImg(item.url)">查看</Button>
-                </div>             
-              </Col>
-            </Row>
-          <!-- 轮播图数据 start -->
-        </Row>
-        <h2 :style="{marginTop: '20px'}">轮播图播放间隙（单位：秒）</h2>
-        <Button type="primary" @click="updateTime">提交修改</Button>
-        <InputNumber :max="10" :min="1" v-model="bannerTiem"></InputNumber>
-        <Row>
-          <Col span="16">
-            <Form label-position="top">
-                <h2>微动商城底部信息：</h2>
-                <FormItem label="">
-                    <Input v-model="footer" disabled></Input>
-                </FormItem>
-                <Button type="primary" @click="updateFooter">更新底部信息</Button>
-            </Form>
-            </Col>
-        </Row>
-    </div>
+  <div id="wdInfo">
+    <Row type="flex" justify="center" align="middle">
+      <Col span="8">
+        <Card style="width:320px" class="wdLogoBox">
+          <div style="text-align:center">
+            <img :src="imgServer+wdLogo">
+            <h3>微动鞋子商城Logo</h3>
+            <Upload
+              :format="['jpg','jpeg','png']"
+              :headers="headers"
+              :on-success="uploadSuccess"
+              action="//127.0.0.1:3000/upload"
+            >
+              <Button type="ghost" icon="ios-cloud-upload-outline">修改Logo</Button>
+            </Upload>
+          </div>
+        </Card>
+      </Col>
+    </Row>
+    <Row :style="{marginTop: '20px',height:'150px'}" type="flex" align="middle">
+      <Col span="2">
+        <h2>轮播图列表</h2>
+      </Col>
+      <Col span="4">
+        <Upload :headers="headers" :on-success="addBanner" action="//127.0.0.1:3000/upload">
+          <Button type="primary" icon="ios-cloud-upload-outline">添加轮播图</Button>
+        </Upload>
+      </Col>
+    </Row>
+    <Row>
+      <!-- 轮播图数据 start -->
+      <!-- <Table :border="true" :columns="bannerColumns" :data="bannerList"></Table> -->
+      <Row type="flex" justify="center" align="middle" class="headerBox">
+        <Col span="1">
+          <h3>序号</h3>
+        </Col>
+        <Col span="9">
+          <h3>预览</h3>
+        </Col>
+        <Col span="7">
+          <h3>URL地址</h3>
+        </Col>
+        <Col span="2">
+          <h3>对应商品ID</h3>
+        </Col>
+        <Col span="5">
+          <h3>操作</h3>
+        </Col>
+      </Row>
+      <Row
+        type="flex"
+        justify="center"
+        align="middle"
+        class="dataBox"
+        v-for="(item,i) in bannerList"
+      >
+        <Col span="1">{{1+i}}</Col>
+        <Col span="9">
+          <img :src="imgServer+item.img" alt class="bannerImg">
+        </Col>
+        <Col span="7">{{item.url}}</Col>
+        <Col span="2">{{item.goodsId}}</Col>
+        <Col span="5">
+          <div class="action">
+            <Button type="primary" @click="showImg(item.url)">查看</Button>
+            <Upload
+              :headers="headers"
+              :onSuccess="updateBanner"
+              action="//127.0.0.1:3000/upload"
+              :format="['jpg', 'jpeg', 'png']"
+              :style="{height: '32px',marginTop: '5px'}"
+            >
+              <Button type="info" @click="bannerImgIndex = i">更换图片</Button>
+            </Upload>
+            <Button :style="{marginTop: '5px'}" @click="changeBannerId(item,i)">修改对应ID</Button>
+            <Button :style="{marginTop: '5px'}" type="error" @click="delBanner(item)">删除</Button>
+          </div>
+        </Col>
+      </Row>
+      <!-- 轮播图数据 start -->
+    </Row>
+    <h2 :style="{marginTop: '20px'}">轮播图播放间隙（单位：秒）</h2>
+    <Button type="primary" @click="updateTime">提交修改</Button>
+    <InputNumber :max="10" :min="1" v-model="bannerTiem"></InputNumber>
+    <Row>
+      <Col span="16">
+        <Form label-position="top">
+          <h2>微动商城底部信息：</h2>
+          <FormItem label>
+            <Input v-model="footer" disabled></Input>
+          </FormItem>
+          <Button type="primary" @click="updateFooter">更新底部信息</Button>
+        </Form>
+      </Col>
+    </Row>
+  </div>
 </template>
 <style lang="less" scoped>
 .wdLogoBox {
@@ -73,6 +107,13 @@
     margin-top: 20px;
     margin-bottom: 20px;
   }
+}
+.dataBox {
+  height: 150px;
+}
+.bannerImg {
+  display: block;
+  width: 90%;
 }
 </style>
 
@@ -134,7 +175,7 @@ export default {
                   display: "flex",
                   alignItems: "center",
                   justifyContent: "space-around",
-                  flexDirection:"column"
+                  flexDirection: "column"
                 }
               },
               [
@@ -212,9 +253,17 @@ export default {
                               }
                             });
                           },
-                          onOk:()=>{
-                            console.log(params.index, params.row.goodsId,this.banner_goods_id);
-                            this.banner_goods_id.splice(params.index, 1, params.row.goodsId);
+                          onOk: () => {
+                            console.log(
+                              params.index,
+                              params.row.goodsId,
+                              this.banner_goods_id
+                            );
+                            this.banner_goods_id.splice(
+                              params.index,
+                              1,
+                              params.row.goodsId
+                            );
                             this.updateWdInfo({
                               banner_goods_id: this.banner_goods_id.join(",")
                             });
@@ -231,7 +280,7 @@ export default {
                     props: {
                       type: "error"
                     },
-                    style:{
+                    style: {
                       margin: "10px 0"
                     },
                     on: {
@@ -259,6 +308,40 @@ export default {
     this.getWdInfo();
   },
   methods: {
+    delBannerConfirm(index) {
+      this.$Modal.confirm({
+        title: "提示",
+        content: "确定删除轮播图？",
+        onOk: () => {
+          this.delBanner(index);
+        }
+      });
+    },
+    changeBannerId(bannerInfo, index) {
+      this.$Modal.confirm({
+        render: h => {
+          return h("Input", {
+            props: {
+              value: bannerInfo.goodsId,
+              autofocus: true,
+              placeholder: "请输入对应的商品ID"
+            },
+            on: {
+              input: val => {
+                bannerInfo.goodsId = val;
+              }
+            }
+          });
+        },
+        onOk: () => {
+          console.log(index, bannerInfo.goodsId, this.banner_goods_id);
+          this.banner_goods_id.splice(index, 1, bannerInfo.goodsId);
+          this.updateWdInfo({
+            banner_goods_id: this.banner_goods_id.join(",")
+          });
+        }
+      });
+    },
     getWdInfo() {
       this.bannerList = [];
       this.axios.get("/public/getWdInfo").then(res => {
@@ -266,7 +349,7 @@ export default {
         this.footer = res.data.info_footer;
         this.bannerTiem = res.data.info_banner_time;
         this.tempBannerList = res.data.info_banner;
-        this.banner_goods_id = res.data.banner_goods_id
+        this.banner_goods_id = res.data.banner_goods_id;
         // 轮播图
         for (var i = 0; i < res.data.info_banner.length; i++) {
           console.log(res.data.info_banner[i], res.data.banner_goods_id[i]);

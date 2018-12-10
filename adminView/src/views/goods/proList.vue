@@ -52,55 +52,55 @@
 #proList .ivu-table-cell {
   padding: 0;
 }
-.headerBox{
-  height: 45px;
-  border:1px solid #e5e5e5;
-  background-color: #f8f8f9;
-  h3{
-    text-align: center;
-    border-right:1px solid #e5e5e5;
-    line-height: 45px;
-    height: 45px;
-    font-size: 14px;
-    color: #333;
-  }
-  /deep/.ivu-col:last-of-type{
-    h3{
-      border-right:none
-    }
-  }
-}
-.dataBox{
-  border-bottom:1px solid #e5e5e5;
-  border-left:1px solid #e5e5e5;
-  border-right:1px solid #e5e5e5;
-  padding: 10px 0;
-  background-color: #fff;
-  height: 100px;
-  .proImg{
-    width: 100px;
-    max-height:100px;
-  }
-  .action{
-  width: 100%;
-  display: flex;
-  align-items: center;
-  flex-direction: column;
-  .ivu-btn +.ivu-btn{
-    margin-top: 10px;
-  }
-}
-/deep/.ivu-col{
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  height: 100px;
-  border-right: 1px solid #e5e5e5;
-}
-/deep/.ivu-col:last-of-type{
-  border-right: none;
-}
-}
+// .headerBox{
+//   height: 45px;
+//   border:1px solid #e5e5e5;
+//   background-color: #f8f8f9;
+//   h3{
+//     text-align: center;
+//     border-right:1px solid #e5e5e5;
+//     line-height: 45px;
+//     height: 45px;
+//     font-size: 14px;
+//     color: #333;
+//   }
+//   /deep/.ivu-col:last-of-type{
+//     h3{
+//       border-right:none
+//     }
+//   }
+// }
+// .dataBox{
+//   border-bottom:1px solid #e5e5e5;
+//   border-left:1px solid #e5e5e5;
+//   border-right:1px solid #e5e5e5;
+//   padding: 10px 0;
+//   background-color: #fff;
+//   height: 100px;
+//   .proImg{
+//     width: 100px;
+//     max-height:100px;
+//   }
+//   .action{
+//   width: 100%;
+//   display: flex;
+//   align-items: center;
+//   flex-direction: column;
+//   .ivu-btn +.ivu-btn{
+//     margin-top: 10px;
+//   }
+// }
+// /deep/.ivu-col{
+//   display: flex;
+//   align-items: center;
+//   justify-content: center;
+//   height: 100px;
+//   border-right: 1px solid #e5e5e5;
+// }
+// /deep/.ivu-col:last-of-type{
+//   border-right: none;
+// }
+// }
 </style>
 
 <script>
