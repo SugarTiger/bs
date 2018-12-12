@@ -7,7 +7,79 @@
             <Button @click="handleCancel" type="ghost" >重置</Button>
         </Row>
         <Row :style="{marginTop:'10px'}">
-            <Table ref="table" :loading="loading"  :border="true" :columns="userColumns" :data="userList"></Table>
+            <!-- <Table ref="table" :loading="loading"  :border="true" :columns="userColumns" :data="userList"></Table> -->
+          <Row type="flex" justify="center" align="middle" class="headerBox">
+            <Col span="2">
+              <h3>用户ID</h3>
+            </Col>
+            <Col span="3">
+              <h3>用户名</h3>
+            </Col>
+            <Col span="3">
+              <h3>头像</h3>
+            </Col>
+            <Col span="1">
+              <h3>年龄</h3>
+            </Col>
+            <Col span="3">
+              <h3>注册日期</h3>
+            </Col>
+            <Col span="2">
+              <h3>手机</h3>
+            </Col>
+            <Col span="4">
+              <h3>邮箱</h3>
+            </Col>
+            <Col span="1">
+              <h3>性别</h3>
+            </Col>
+            <Col span="2">
+              <h3>账户余额（元）</h3>
+            </Col>
+            <Col span="3">
+              <h3>操作</h3>
+            </Col>
+          </Row>
+          <Row
+              type="flex"
+              justify="center"
+              align="middle"
+              class="dataBox"
+              v-for="(item,i) in userList"
+          >
+            <Col span="2">
+            {{item.user_id}}
+            </Col>
+            <Col span="3">
+            {{item.user_name}}
+            </Col>
+            <Col span="3">
+              <Avatar size="large" :src="imgServer+item.user_headurl"></Avatar>
+            </Col>
+            <Col span="1">
+            {{item.user_age}}
+            </Col>
+            <Col span="3">
+              <span>{{item.user_day|Format}}</span>
+            </Col>
+            <Col span="2">
+            {{item.user_phone}}
+            </Col>
+            <Col span="4">
+            {{item.user_email}}
+            </Col>
+            <Col span="1">
+            {{item.user_sex}}
+            </Col>
+            <Col span="2">
+            {{item.user_balance}}
+            </Col>
+            <Col span="3">
+            <div class="action">
+              <Button type="info" @click="changeUserMoney(item)">修改用户余额</Button>
+            </div>
+            </Col>
+          </Row>
         </Row>
         <Modal v-model="modal1" title="修改用户余额" @on-ok="send">
                 <InputNumber
@@ -16,6 +88,16 @@
         </Modal>
     </div>
 </template>
+<style lang="less" scoped>
+.headerBox h3{
+  font-size: 12px;
+}
+.ivu-avatar-large{
+  width: 80px;
+  height: 80px;
+  border-radius: 50%;
+}
+</style>
 
 <script>
 import { imgServer } from "../../libs/globeConfig";
@@ -154,10 +236,16 @@ export default {
         }
       ],
       searchConName: "",
-      tempList: []
+      tempList: [],
+      imgServer
     };
   },
   methods: {
+    changeUserMoney(userInfo){
+      this.modal1 = true
+      this.userId  = userInfo.user_id;
+      this.yue = userInfo.user_balance;
+    },
     send(){
       this.axios.post("/updateUserInfo",{
         yue:this.yue,
@@ -196,6 +284,11 @@ export default {
   },
   mounted() {
     this.getUserList();
+  },
+  filters:{
+    Format(data){
+      return new Date(data).Format("yyyy-MM-dd hh:mm:ss");
+    }
   }
 };
 </script>
