@@ -222,6 +222,9 @@ export default {
             goods_status : this.formValidate.goods_status?1:0
           }
           Object.assign(proInfo,this.formValidate)
+          if(!proInfo.goods_integral){
+            proInfo.goods_integral = 0;
+          }
           console.log(proInfo)  //表单内容
           // 添加商品
           this.axios.post('/addPro',proInfo).then(res=>{

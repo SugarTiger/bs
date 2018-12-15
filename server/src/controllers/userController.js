@@ -68,6 +68,7 @@ class UserController {
           }]
         }
       });
+      console.log("userItem",userItem)
       if (!!userItem) {
         let token = jwt.sign({
           id: userItem.user_id // 你要保存到token的数据
