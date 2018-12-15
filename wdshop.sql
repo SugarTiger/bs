@@ -10,7 +10,7 @@ Target Server Type    : MYSQL
 Target Server Version : 50714
 File Encoding         : 65001
 
-Date: 2018-11-17 16:44:49
+Date: 2018-12-15 16:59:12
 */
 
 SET FOREIGN_KEY_CHECKS=0;
@@ -25,7 +25,7 @@ CREATE TABLE `wd_action` (
   `action_admin` varchar(100) NOT NULL,
   `action_name` varchar(255) NOT NULL,
   PRIMARY KEY (`action_id`)
-) ENGINE=MyISAM AUTO_INCREMENT=132 DEFAULT CHARSET=utf8;
+) ENGINE=MyISAM AUTO_INCREMENT=135 DEFAULT CHARSET=utf8;
 
 -- ----------------------------
 -- Records of wd_action
@@ -152,6 +152,9 @@ INSERT INTO `wd_action` VALUES ('128', '2018-10-04 09:04:18', 'root', '添加商
 INSERT INTO `wd_action` VALUES ('129', '2018-10-04 09:04:47', 'root', '编辑商品');
 INSERT INTO `wd_action` VALUES ('130', '2018-10-04 09:07:37', 'root', '添加管理员');
 INSERT INTO `wd_action` VALUES ('131', '2018-10-04 09:08:13', 'root', '操作管理员状态');
+INSERT INTO `wd_action` VALUES ('132', '2018-12-15 08:31:19', 'root', '添加商品');
+INSERT INTO `wd_action` VALUES ('133', '2018-12-15 08:31:46', 'root', '添加商品');
+INSERT INTO `wd_action` VALUES ('134', '2018-12-15 08:32:18', 'root', '添加商品');
 
 -- ----------------------------
 -- Table structure for wd_address
@@ -175,7 +178,7 @@ CREATE TABLE `wd_address` (
 -- ----------------------------
 -- Records of wd_address
 -- ----------------------------
-INSERT INTO `wd_address` VALUES ('4', '李泽飞', '广东', '广州大学华软软件学院', '13246841799', '', '', '1', '0');
+INSERT INTO `wd_address` VALUES ('4', '测试员1', '广东', '广州大学华软软件学院', '13246851899', '010081542', '123456789@qq.com', '1', '0');
 
 -- ----------------------------
 -- Table structure for wd_admin
@@ -197,7 +200,7 @@ CREATE TABLE `wd_admin` (
 INSERT INTO `wd_admin` VALUES ('1', '1', 'root', '63a9f0ea7bb98050796b649e85481845', '/assets/uploads/header.jpg', '1');
 INSERT INTO `wd_admin` VALUES ('6', '0', 'admin', '21232f297a57a5a743894a0e4a801fc3', '/assets/uploads/6874249330634292.png', '1');
 INSERT INTO `wd_admin` VALUES ('7', '0', 'test001', '098f6bcd4621d373cade4e832627b4f6', '/assets/uploads/8542252702695801.png', '1');
-INSERT INTO `wd_admin` VALUES ('8', '0', 'test004', 'e10adc3949ba59abbe56e057f20f883e', '/assets/uploads/301931859088179.jpg', '0');
+INSERT INTO `wd_admin` VALUES ('8', '0', 'test004', 'e10adc3949ba59abbe56e057f20f883e', '/assets/uploads/23601587558837966.png', '0');
 
 -- ----------------------------
 -- Table structure for wd_cart
@@ -217,8 +220,6 @@ CREATE TABLE `wd_cart` (
 -- Records of wd_cart
 -- ----------------------------
 INSERT INTO `wd_cart` VALUES ('1', '0', '0', '1');
-INSERT INTO `wd_cart` VALUES ('4', '0', '0', '4');
-INSERT INTO `wd_cart` VALUES ('5', '5', '2995', '5');
 
 -- ----------------------------
 -- Table structure for wd_cart_goods
@@ -245,7 +246,6 @@ CREATE TABLE `wd_cart_goods` (
 -- ----------------------------
 -- Records of wd_cart_goods
 -- ----------------------------
-INSERT INTO `wd_cart_goods` VALUES ('5', '9', 'ASICS亚瑟士新款专业稳定跑鞋男士轻便透气运动鞋T8D0Q-211', '亚瑟士', '599', '白色', '/assets/uploads/7796301169378743.jpg,/assets/uploads/2018459861933808.jpg,/assets/uploads/44239509195943794.jpg,/assets/uploads/6644663450217063.jpg', '10', '42', '5');
 
 -- ----------------------------
 -- Table structure for wd_comment
@@ -290,13 +290,15 @@ CREATE TABLE `wd_goods` (
   `goods_status` int(1) NOT NULL DEFAULT '1',
   `goods_inventory` int(11) NOT NULL,
   PRIMARY KEY (`goods_id`)
-) ENGINE=InnoDB AUTO_INCREMENT=20 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=22 DEFAULT CHARSET=utf8;
 
 -- ----------------------------
 -- Records of wd_goods
 -- ----------------------------
 INSERT INTO `wd_goods` VALUES ('9', 'ASICS亚瑟士新款专业稳定跑鞋男士轻便透气运动鞋T8D0Q-211', '亚瑟士', '599', '白色', '0', '6996', '/assets/uploads/7796301169378743.jpg,/assets/uploads/2018459861933808.jpg,/assets/uploads/6644663450217063.jpg', '100', '<p style=\"text-align: center;\"><img src=\"http://127.0.0.1:3000/assets/uploads/9848784082598123.jpg\" style=\"max-width:100%;\"><img src=\"http://127.0.0.1:3000/assets/uploads/2107441784947679.jpg\" style=\"text-align: left; max-width: 100%;\"><img src=\"http://127.0.0.1:3000/assets/uploads/2864498029719429.jpg\" style=\"text-align: left; max-width: 100%;\"><img src=\"http://127.0.0.1:3000/assets/uploads/5700020180978247.jpg\" style=\"text-align: left; max-width: 100%;\"><img src=\"http://127.0.0.1:3000/assets/uploads/5926513894610463.jpg\" style=\"text-align: left; max-width: 100%;\"><img src=\"http://127.0.0.1:3000/assets/uploads/24706640943918035.jpg\" style=\"text-align: left; max-width: 100%;\"><img src=\"http://127.0.0.1:3000/assets/uploads/036600541451780044.jpg\" style=\"text-align: left; max-width: 100%;\"><br></p>', '44', '1', '999');
-INSERT INTO `wd_goods` VALUES ('19', 'test002', '亚瑟士', '588', '黑色', '0', '688', '/assets/uploads/8871996699841791.jpg,/assets/uploads/7110784872175782.jpg,/assets/uploads/13439335722082535.jpg,/assets/uploads/2876969138612224.jpg', '10', '<p style=\"text-align: center;\">商品详情。。。</p>', '44', '0', '999');
+INSERT INTO `wd_goods` VALUES ('19', 'test002', '亚瑟士', '588', '黑色', '0', '688', '/assets/uploads/8871996699841791.jpg,/assets/uploads/7110784872175782.jpg,/assets/uploads/13439335722082535.jpg,/assets/uploads/2876969138612224.jpg', '10', '<p><img src=\"http://127.0.0.1:3000/assets/uploads/08980468366860395.jpg\" style=\"max-width:100%;\"><img src=\"http://127.0.0.1:3000/assets/uploads/2680361115705969.jpg\" style=\"max-width: 100%;\"><img src=\"http://127.0.0.1:3000/assets/uploads/5940700071613287.jpg\" style=\"max-width: 100%;\"><br></p>', '44', '0', '999');
+INSERT INTO `wd_goods` VALUES ('20', 'ASICS亚瑟士跑鞋男鞋GEL-KAYANO 25专业稳定运动鞋1011A019-002', '亚瑟士', '1280', '黑色', '0', '1390', '/assets/uploads/8926939883327396.jpg,/assets/uploads/49277331133178315.jpg,/assets/uploads/4722127770910636.jpg', '11', '<p><img src=\"http://127.0.0.1:3000/assets/uploads/08980468366860395.jpg\" style=\"max-width:100%;\"><img src=\"http://127.0.0.1:3000/assets/uploads/2680361115705969.jpg\" style=\"max-width: 100%;\"><img src=\"http://127.0.0.1:3000/assets/uploads/5940700071613287.jpg\" style=\"max-width: 100%;\"><br></p>', '42', '1', '999');
+INSERT INTO `wd_goods` VALUES ('21', '阿迪达斯官方三叶草Solar HU NMD男子经典鞋BB9527 BB9528 BB9531', '阿迪达斯', '1888', '红色', '90', '1899', '/assets/uploads/0302.jpg,/assets/uploads/0301.jpg,/assets/uploads/0303.jpg', '12', 'a', '43', '1', '999');
 
 -- ----------------------------
 -- Table structure for wd_info
@@ -318,7 +320,7 @@ CREATE TABLE `wd_info` (
 -- ----------------------------
 -- Records of wd_info
 -- ----------------------------
-INSERT INTO `wd_info` VALUES ('2018-03-19', '/assets/uploads/650261511599129.jpg,/assets/uploads/7955824374036844.jpg,/assets/uploads/02520509167109597.jpg', '1', '/assets/uploads/08881343268700848.png', '1', 'test0001', '1', '/assets/ad/ad_b.png,/assets/ad/ad_hot.png,/assets/ad/ad_new.png,/assets/ad/ad_t.png', '9,9,9');
+INSERT INTO `wd_info` VALUES ('2018-03-19', '/assets/uploads/650261511599129.jpg,/assets/uploads/7955824374036844.jpg,/assets/uploads/02520509167109597.jpg', '1', '/assets/uploads/08881343268700848.png', '1', '地址：广东省广州市从化区经济开发区高技术产业园广从南路548号 | 电话：020－87818918 传真：87818020 邮编：510990 | 网站公安备案编号：4401840100050 ', '1', '/assets/ad/ad_b.png,/assets/ad/ad_hot.png,/assets/ad/ad_new.png,/assets/ad/ad_t.png', '9,9,9');
 
 -- ----------------------------
 -- Table structure for wd_order
@@ -353,12 +355,6 @@ CREATE TABLE `wd_order` (
 -- ----------------------------
 -- Records of wd_order
 -- ----------------------------
-INSERT INTO `wd_order` VALUES ('1', '2018-10-27 05:36:17', '2018-11-17 06:40:56', '0', null, '0', '0', '599', '123123', '2', '1', '李泽飞', '13246841799', '广东广州大学华软软件学院', null, null, null, null, '3', null);
-INSERT INTO `wd_order` VALUES ('2', '2018-11-17 06:43:12', null, '0', null, '0', '0', '599', '', '1', '1', '李泽飞', '13246841799', '广东广州大学华软软件学院', null, null, null, null, null, null);
-INSERT INTO `wd_order` VALUES ('3', '2018-11-17 06:55:24', null, '0', null, '0', '0', '599', '', '1', '1', '李泽飞', '13246841799', '广东广州大学华软软件学院', null, null, null, null, null, null);
-INSERT INTO `wd_order` VALUES ('5', '2018-11-17 08:31:37', null, '0', null, '0', '0', '599', '', '1', '1', '李泽飞', '13246841799', '广东广州大学华软软件学院', null, null, null, null, null, null);
-INSERT INTO `wd_order` VALUES ('6', '2018-11-17 08:43:32', null, '0', null, '0', '0', '599', '', '1', '1', '李泽飞', '13246841799', '广东广州大学华软软件学院', null, null, null, null, null, null);
-INSERT INTO `wd_order` VALUES ('7', '2018-11-17 08:43:44', null, '0', null, '0', '0', '599', '', '1', '1', '李泽飞', '13246841799', '广东广州大学华软软件学院', null, null, null, null, null, null);
 
 -- ----------------------------
 -- Table structure for wd_order_goods
@@ -385,12 +381,6 @@ CREATE TABLE `wd_order_goods` (
 -- ----------------------------
 -- Records of wd_order_goods
 -- ----------------------------
-INSERT INTO `wd_order_goods` VALUES ('1', '9', 'ASICS亚瑟士新款专业稳定跑鞋男士轻便透气运动鞋T8D0Q-211', '亚瑟士', '599', '白色', '/assets/uploads/7796301169378743.jpg,/assets/uploads/2018459861933808.jpg,/assets/uploads/6644663450217063.jpg', '100', '44', '1');
-INSERT INTO `wd_order_goods` VALUES ('2', '9', 'ASICS亚瑟士新款专业稳定跑鞋男士轻便透气运动鞋T8D0Q-211', '亚瑟士', '599', '白色', '/assets/uploads/7796301169378743.jpg,/assets/uploads/2018459861933808.jpg,/assets/uploads/6644663450217063.jpg', '100', '44', '1');
-INSERT INTO `wd_order_goods` VALUES ('3', '9', 'ASICS亚瑟士新款专业稳定跑鞋男士轻便透气运动鞋T8D0Q-211', '亚瑟士', '599', '白色', '/assets/uploads/7796301169378743.jpg,/assets/uploads/2018459861933808.jpg,/assets/uploads/6644663450217063.jpg', '100', '44', '1');
-INSERT INTO `wd_order_goods` VALUES ('5', '9', 'ASICS亚瑟士新款专业稳定跑鞋男士轻便透气运动鞋T8D0Q-211', '亚瑟士', '599', '白色', '/assets/uploads/7796301169378743.jpg,/assets/uploads/2018459861933808.jpg,/assets/uploads/6644663450217063.jpg', '100', '44', '1');
-INSERT INTO `wd_order_goods` VALUES ('6', '9', 'ASICS亚瑟士新款专业稳定跑鞋男士轻便透气运动鞋T8D0Q-211', '亚瑟士', '599', '白色', '/assets/uploads/7796301169378743.jpg,/assets/uploads/2018459861933808.jpg,/assets/uploads/6644663450217063.jpg', '100', '44', '1');
-INSERT INTO `wd_order_goods` VALUES ('7', '9', 'ASICS亚瑟士新款专业稳定跑鞋男士轻便透气运动鞋T8D0Q-211', '亚瑟士', '599', '白色', '/assets/uploads/7796301169378743.jpg,/assets/uploads/2018459861933808.jpg,/assets/uploads/6644663450217063.jpg', '100', '44', '1');
 
 -- ----------------------------
 -- Table structure for wd_user
@@ -414,8 +404,4 @@ CREATE TABLE `wd_user` (
 -- ----------------------------
 -- Records of wd_user
 -- ----------------------------
-INSERT INTO `wd_user` VALUES ('1', '阿飞', '2018-03-19 18:18:06', '25f9e794323b453885f5181f1b624d0b', '18', '13246841799', '1', '1029109173@qq.com', '/assets/uploads/header.jpg', '93936', 'e10adc3949ba59abbe56e057f20f883e');
-INSERT INTO `wd_user` VALUES ('2', '小k', '2018-03-19 21:07:21', '25f9e794323b453885f5181f1b624d0b', '18', '13246841788', '0', '1029109172@qq.com', '/assets/uploads/11659687.png', '888892', 'e10adc3949ba59abbe56e057f20f883e');
-INSERT INTO `wd_user` VALUES ('3', 'afei22', '2018-04-14 05:59:31', '25f9e794323b453885f5181f1b624d0b', null, '13246841733', null, '1029109178@11.com', '/assets/uploads/header.jpg', '234429', 'e10adc3949ba59abbe56e057f20f883e');
-INSERT INTO `wd_user` VALUES ('4', 'afei22', '2018-10-01 15:43:55', '25d55ad283aa400af464c76d713c07ad', null, '13246841766', null, '1029109178@qq.com', '/assets/uploads/header.jpg', '0', 'e10adc3949ba59abbe56e057f20f883e');
-INSERT INTO `wd_user` VALUES ('5', 'test011', '2018-10-04 08:40:35', '25d55ad283aa400af464c76d713c07ad', null, '13746247899', null, '1291089176@qq.com', '/assets/uploads/header.jpg', '0', 'e10adc3949ba59abbe56e057f20f883e');
+INSERT INTO `wd_user` VALUES ('1', 'test001', '2018-03-19 18:18:06', 'e10adc3949ba59abbe56e057f20f883e', '18', '13246851899', '1', '123456789@qq.com', '/assets/uploads/header.jpg', '93936', 'e10adc3949ba59abbe56e057f20f883e');
