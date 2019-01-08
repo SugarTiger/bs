@@ -229,6 +229,7 @@ export default {
                 })
             },
             removeAddress: function (addressId, i) {
+              var that = this;
               this.$confirm('确定删除收货地址？', '提示', {
                 confirmButtonText: '确定',
                 cancelButtonText: '取消',
@@ -285,7 +286,7 @@ export default {
                             that.$router.push({
                               name:'confirm_order',
                               query:{
-                                isGoToBug:!!this.$router.query.isGoToBug,
+                                isGoToBug:!!this.$route.query.isGoToBug,
                                 orderPro:orderPro
                               }
                             });

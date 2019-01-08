@@ -1,7 +1,7 @@
 /*
 Navicat MySQL Data Transfer
 
-Source Server         : 本地MySQL
+Source Server         : MySQL
 Source Server Version : 50714
 Source Host           : localhost:3306
 Source Database       : wdshop
@@ -10,7 +10,7 @@ Target Server Type    : MYSQL
 Target Server Version : 50714
 File Encoding         : 65001
 
-Date: 2018-12-15 16:59:12
+Date: 2018-12-16 23:59:17
 */
 
 SET FOREIGN_KEY_CHECKS=0;
@@ -290,15 +290,16 @@ CREATE TABLE `wd_goods` (
   `goods_status` int(1) NOT NULL DEFAULT '1',
   `goods_inventory` int(11) NOT NULL,
   PRIMARY KEY (`goods_id`)
-) ENGINE=InnoDB AUTO_INCREMENT=22 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=23 DEFAULT CHARSET=utf8;
 
 -- ----------------------------
 -- Records of wd_goods
 -- ----------------------------
 INSERT INTO `wd_goods` VALUES ('9', 'ASICS亚瑟士新款专业稳定跑鞋男士轻便透气运动鞋T8D0Q-211', '亚瑟士', '599', '白色', '0', '6996', '/assets/uploads/7796301169378743.jpg,/assets/uploads/2018459861933808.jpg,/assets/uploads/6644663450217063.jpg', '100', '<p style=\"text-align: center;\"><img src=\"http://127.0.0.1:3000/assets/uploads/9848784082598123.jpg\" style=\"max-width:100%;\"><img src=\"http://127.0.0.1:3000/assets/uploads/2107441784947679.jpg\" style=\"text-align: left; max-width: 100%;\"><img src=\"http://127.0.0.1:3000/assets/uploads/2864498029719429.jpg\" style=\"text-align: left; max-width: 100%;\"><img src=\"http://127.0.0.1:3000/assets/uploads/5700020180978247.jpg\" style=\"text-align: left; max-width: 100%;\"><img src=\"http://127.0.0.1:3000/assets/uploads/5926513894610463.jpg\" style=\"text-align: left; max-width: 100%;\"><img src=\"http://127.0.0.1:3000/assets/uploads/24706640943918035.jpg\" style=\"text-align: left; max-width: 100%;\"><img src=\"http://127.0.0.1:3000/assets/uploads/036600541451780044.jpg\" style=\"text-align: left; max-width: 100%;\"><br></p>', '44', '1', '999');
 INSERT INTO `wd_goods` VALUES ('19', 'test002', '亚瑟士', '588', '黑色', '0', '688', '/assets/uploads/8871996699841791.jpg,/assets/uploads/7110784872175782.jpg,/assets/uploads/13439335722082535.jpg,/assets/uploads/2876969138612224.jpg', '10', '<p><img src=\"http://127.0.0.1:3000/assets/uploads/08980468366860395.jpg\" style=\"max-width:100%;\"><img src=\"http://127.0.0.1:3000/assets/uploads/2680361115705969.jpg\" style=\"max-width: 100%;\"><img src=\"http://127.0.0.1:3000/assets/uploads/5940700071613287.jpg\" style=\"max-width: 100%;\"><br></p>', '44', '0', '999');
-INSERT INTO `wd_goods` VALUES ('20', 'ASICS亚瑟士跑鞋男鞋GEL-KAYANO 25专业稳定运动鞋1011A019-002', '亚瑟士', '1280', '黑色', '0', '1390', '/assets/uploads/8926939883327396.jpg,/assets/uploads/49277331133178315.jpg,/assets/uploads/4722127770910636.jpg', '11', '<p><img src=\"http://127.0.0.1:3000/assets/uploads/08980468366860395.jpg\" style=\"max-width:100%;\"><img src=\"http://127.0.0.1:3000/assets/uploads/2680361115705969.jpg\" style=\"max-width: 100%;\"><img src=\"http://127.0.0.1:3000/assets/uploads/5940700071613287.jpg\" style=\"max-width: 100%;\"><br></p>', '42', '1', '999');
-INSERT INTO `wd_goods` VALUES ('21', '阿迪达斯官方三叶草Solar HU NMD男子经典鞋BB9527 BB9528 BB9531', '阿迪达斯', '1888', '红色', '90', '1899', '/assets/uploads/0302.jpg,/assets/uploads/0301.jpg,/assets/uploads/0303.jpg', '12', 'a', '43', '1', '999');
+INSERT INTO `wd_goods` VALUES ('20', 'Nike 耐克官方NIKE EBERNON LOW 男子运动鞋AQ1775', '耐克', '1280', '白色', '0', '1390', '/assets/uploads/0501.jpg,/assets/uploads/0502.jpg,/assets/uploads/0503.jpg', '11', '<p><img src=\"http://127.0.0.1:3000/assets/uploads/0504.jpg\" style=\"max-width:100%;\"><img src=\"http://127.0.0.1:3000/assets/uploads/0505.jpg\" style=\"max-width: 100%;\"><img src=\"http://127.0.0.1:3000/assets/uploads/0506.jpg\" style=\"max-width: 100%;\"><br></p>', '42', '1', '999');
+INSERT INTO `wd_goods` VALUES ('21', '阿迪达斯官方三叶草Solar HU NMD男子经典鞋BB9527 BB9528 BB9531', '阿迪达斯', '1888', '红色', '90', '1899', '/assets/uploads/0302.jpg,/assets/uploads/0301.jpg,/assets/uploads/0303.jpg', '12', '100%;\"><br></p>', '43', '1', '999');
+INSERT INTO `wd_goods` VALUES ('22', '阿迪达斯官方 neo 男女 CLEAN 休闲鞋', '阿迪达斯', '628', '黑色', '1', '688', '/assets/uploads/0402.jpg,/assets/uploads/0401.jpg,/assets/uploads/0403.jpg', '10', '100%;\"><br></p>', '42', '1', '888');
 
 -- ----------------------------
 -- Table structure for wd_info
