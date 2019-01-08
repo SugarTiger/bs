@@ -10,7 +10,7 @@ Target Server Type    : MYSQL
 Target Server Version : 50714
 File Encoding         : 65001
 
-Date: 2018-12-16 23:59:17
+Date: 2019-01-09 00:32:02
 */
 
 SET FOREIGN_KEY_CHECKS=0;
@@ -25,7 +25,7 @@ CREATE TABLE `wd_action` (
   `action_admin` varchar(100) NOT NULL,
   `action_name` varchar(255) NOT NULL,
   PRIMARY KEY (`action_id`)
-) ENGINE=MyISAM AUTO_INCREMENT=135 DEFAULT CHARSET=utf8;
+) ENGINE=MyISAM AUTO_INCREMENT=141 DEFAULT CHARSET=utf8;
 
 -- ----------------------------
 -- Records of wd_action
@@ -155,6 +155,12 @@ INSERT INTO `wd_action` VALUES ('131', '2018-10-04 09:08:13', 'root', '操作管
 INSERT INTO `wd_action` VALUES ('132', '2018-12-15 08:31:19', 'root', '添加商品');
 INSERT INTO `wd_action` VALUES ('133', '2018-12-15 08:31:46', 'root', '添加商品');
 INSERT INTO `wd_action` VALUES ('134', '2018-12-15 08:32:18', 'root', '添加商品');
+INSERT INTO `wd_action` VALUES ('135', '2019-01-08 16:26:05', 'root', '编辑商品');
+INSERT INTO `wd_action` VALUES ('136', '2019-01-08 16:26:16', 'root', '编辑商品');
+INSERT INTO `wd_action` VALUES ('137', '2019-01-08 16:27:49', 'root', '添加商品');
+INSERT INTO `wd_action` VALUES ('138', '2019-01-08 16:28:13', 'root', '管理员修改用户余额');
+INSERT INTO `wd_action` VALUES ('139', '2019-01-08 16:28:27', 'root', '操作管理员状态');
+INSERT INTO `wd_action` VALUES ('140', '2019-01-08 16:28:30', 'root', '操作管理员状态');
 
 -- ----------------------------
 -- Table structure for wd_address
@@ -173,12 +179,13 @@ CREATE TABLE `wd_address` (
   PRIMARY KEY (`address_id`),
   KEY `fk_wd_ address_wd_user1` (`user_id`),
   CONSTRAINT `fk_wd_ address_wd_user1` FOREIGN KEY (`user_id`) REFERENCES `wd_user` (`user_id`) ON DELETE NO ACTION ON UPDATE NO ACTION
-) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=8 DEFAULT CHARSET=utf8;
 
 -- ----------------------------
 -- Records of wd_address
 -- ----------------------------
 INSERT INTO `wd_address` VALUES ('4', '测试员1', '广东', '广州大学华软软件学院', '13246851899', '010081542', '123456789@qq.com', '1', '0');
+INSERT INTO `wd_address` VALUES ('7', '测试员2', '广东', '广州大学华软软件学院', '13245841899', '', '', '1', '0');
 
 -- ----------------------------
 -- Table structure for wd_admin
@@ -214,12 +221,12 @@ CREATE TABLE `wd_cart` (
   PRIMARY KEY (`cart_id`),
   KEY `fk_wd_cart_wd_user1` (`user_id`),
   CONSTRAINT `fk_wd_cart_wd_user1` FOREIGN KEY (`user_id`) REFERENCES `wd_user` (`user_id`) ON DELETE NO ACTION ON UPDATE NO ACTION
-) ENGINE=InnoDB AUTO_INCREMENT=6 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8;
 
 -- ----------------------------
 -- Records of wd_cart
 -- ----------------------------
-INSERT INTO `wd_cart` VALUES ('1', '0', '0', '1');
+INSERT INTO `wd_cart` VALUES ('1', '3', '1797', '1');
 
 -- ----------------------------
 -- Table structure for wd_cart_goods
@@ -290,7 +297,7 @@ CREATE TABLE `wd_goods` (
   `goods_status` int(1) NOT NULL DEFAULT '1',
   `goods_inventory` int(11) NOT NULL,
   PRIMARY KEY (`goods_id`)
-) ENGINE=InnoDB AUTO_INCREMENT=23 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=24 DEFAULT CHARSET=utf8;
 
 -- ----------------------------
 -- Records of wd_goods
@@ -300,6 +307,7 @@ INSERT INTO `wd_goods` VALUES ('19', 'test002', '亚瑟士', '588', '黑色', '0
 INSERT INTO `wd_goods` VALUES ('20', 'Nike 耐克官方NIKE EBERNON LOW 男子运动鞋AQ1775', '耐克', '1280', '白色', '0', '1390', '/assets/uploads/0501.jpg,/assets/uploads/0502.jpg,/assets/uploads/0503.jpg', '11', '<p><img src=\"http://127.0.0.1:3000/assets/uploads/0504.jpg\" style=\"max-width:100%;\"><img src=\"http://127.0.0.1:3000/assets/uploads/0505.jpg\" style=\"max-width: 100%;\"><img src=\"http://127.0.0.1:3000/assets/uploads/0506.jpg\" style=\"max-width: 100%;\"><br></p>', '42', '1', '999');
 INSERT INTO `wd_goods` VALUES ('21', '阿迪达斯官方三叶草Solar HU NMD男子经典鞋BB9527 BB9528 BB9531', '阿迪达斯', '1888', '红色', '90', '1899', '/assets/uploads/0302.jpg,/assets/uploads/0301.jpg,/assets/uploads/0303.jpg', '12', '100%;\"><br></p>', '43', '1', '999');
 INSERT INTO `wd_goods` VALUES ('22', '阿迪达斯官方 neo 男女 CLEAN 休闲鞋', '阿迪达斯', '628', '黑色', '1', '688', '/assets/uploads/0402.jpg,/assets/uploads/0401.jpg,/assets/uploads/0403.jpg', '10', '100%;\"><br></p>', '42', '1', '888');
+INSERT INTO `wd_goods` VALUES ('23', 'test222', '阿迪达斯', '299', '黑色', '0', '399', '/assets/uploads/37710045254842917.jpg', '0', '<p>测试十四房贷首付士大夫士大夫反抗精神的克里夫</p>', '42', '1', '100');
 
 -- ----------------------------
 -- Table structure for wd_info
@@ -351,11 +359,12 @@ CREATE TABLE `wd_order` (
   PRIMARY KEY (`order_id`),
   KEY `fk_wd_order_wd_user` (`user_id`),
   CONSTRAINT `fk_wd_order_wd_user` FOREIGN KEY (`user_id`) REFERENCES `wd_user` (`user_id`) ON DELETE NO ACTION ON UPDATE NO ACTION
-) ENGINE=InnoDB AUTO_INCREMENT=8 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8;
 
 -- ----------------------------
 -- Records of wd_order
 -- ----------------------------
+INSERT INTO `wd_order` VALUES ('2', '2019-01-08 16:23:03', '2019-01-08 16:23:14', '0', null, '0', '0', '1280', '', '2', '1', '测试员1', '13246851899', '广东广州大学华软软件学院', null, null, null, null, '1', null);
 
 -- ----------------------------
 -- Table structure for wd_order_goods
@@ -382,6 +391,7 @@ CREATE TABLE `wd_order_goods` (
 -- ----------------------------
 -- Records of wd_order_goods
 -- ----------------------------
+INSERT INTO `wd_order_goods` VALUES ('2', '20', 'Nike 耐克官方NIKE EBERNON LOW 男子运动鞋AQ1775', '耐克', '1280', '白色', '/assets/uploads/0501.jpg,/assets/uploads/0502.jpg,/assets/uploads/0503.jpg', '11', '42', '1');
 
 -- ----------------------------
 -- Table structure for wd_user
@@ -400,9 +410,9 @@ CREATE TABLE `wd_user` (
   `user_balance` float NOT NULL,
   `user_pay_pwd` varchar(255) NOT NULL,
   PRIMARY KEY (`user_id`)
-) ENGINE=InnoDB AUTO_INCREMENT=6 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8;
 
 -- ----------------------------
 -- Records of wd_user
 -- ----------------------------
-INSERT INTO `wd_user` VALUES ('1', 'test001', '2018-03-19 18:18:06', 'e10adc3949ba59abbe56e057f20f883e', '18', '13246851899', '1', '123456789@qq.com', '/assets/uploads/header.jpg', '93936', 'e10adc3949ba59abbe56e057f20f883e');
+INSERT INTO `wd_user` VALUES ('1', 'test001', '2018-03-19 18:18:06', 'e10adc3949ba59abbe56e057f20f883e', '18', '13246851899', '1', '123456789@qq.com', '/assets/uploads/header.jpg', '100', 'e10adc3949ba59abbe56e057f20f883e');
