@@ -28,7 +28,71 @@
             <Button @click="handleCancel" type="ghost" >重置</Button>
         </Row>
         <Row :style="{marginTop:'10px'}">
-            <Table :loading="loading" ref="table" :border="true" :columns="proColumns" :data="proList"></Table>
+            <!-- <Table :loading="loading" ref="table" :border="true" :columns="proColumns" :data="proList"></Table> -->
+            <Row type="flex" justify="center" align="middle" class="headerBox">
+              <Col span="2">
+                <h3>商品ID</h3>
+              </Col>
+              <Col span="5">
+                <h3>商品名称</h3>
+              </Col>
+              <Col span="5">
+                <h3>商品图片</h3>
+              </Col>
+              <Col span="2">
+                <h3>价格</h3>
+              </Col>
+              <Col span="2">
+                <h3>商品类目</h3>
+              </Col>
+              <Col span="2">
+                <h3>商品颜色</h3>
+              </Col>
+              <Col span="2">
+                <h3>商品尺码</h3>
+              </Col>
+              <Col span="2">
+                <h3>数量</h3>
+              </Col>
+              <Col span="2">
+                <h3>商品积分</h3>
+              </Col>
+            </Row>
+            <Row
+              type="flex"
+              justify="center"
+              align="middle"
+              class="dataBox"
+              v-for="(item,i) in proList"
+            >
+              <Col span="2">
+                {{item.goods_id}}
+              </Col>
+              <Col span="5">
+                {{item.goods_name}}
+              </Col>
+              <Col span="5">
+                <img :src="imgServer+item.goods_img[0]"/>
+              </Col>
+              <Col span="2">
+                {{item.goods_price}}
+              </Col>
+              <Col span="2">
+                {{item.goods_type}}
+              </Col>
+              <Col span="2">
+                {{item.goods_color}}
+              </Col>
+              <Col span="2">
+                {{item.goods_capacity}}
+              </Col>
+              <Col span="2">
+                {{item.goods_quantity}}
+              </Col>
+              <Col span="2">
+                {{item.goods_integral}}
+              </Col>
+            </Row>
         </Row>
 
         <Modal v-model="modal1" title="填写发货信息" @on-ok="send">
@@ -55,6 +119,7 @@ export default {
   name: "orderDetail",
   data() {
     return {
+      imgServer,
       modal1: false,
       wlList: [
         {
@@ -172,68 +237,68 @@ export default {
       orderInfo: { order_status: 1 },
       loading: true,
       sendLoading:true,
-      proColumns: [
-        {
-          title: "商品ID",
-          key: "goods_id",
-          width: 50,
-          align: "center"
-        },
-        {
-          title: "商品名称",
-          key: "goods_name",
-          align: "center",
-          width: 200
-        },
-        {
-          title: "商品图片",
-          key: "goods_img",
-          align: "center",
-          width: "136px",
-          render: (h, params) => {
-            return h("img", {
-              attrs: {
-                src: imgServer + params.row.goods_img[0]
-              },
-              style: {
-                display: "block",
-                width: "100px",
-                maxHeight: "100px"
-              }
-            });
-          }
-        },
-        {
-          title: "价格",
-          key: "goods_price",
-          align: "center"
-        },
-        {
-          title: "商品类目",
-          key: "goods_type",
-          align: "center"
-        },
-        {
-          title: "商品颜色",
-          key: "goods_color",
-          align: "center"
-        },
-        {
-          title: "商品尺码",
-          key: "goods_capacity",
-          align: "center"
-        },
-        {
-          title: "数量",
-          key: "goods_quantity",
-          align: "center"
-        },
-        {
-          title: "商品积分",
-          key: "goods_integral",
-          align: "center"
-        }
-      ],
+      // proColumns: [
+      //   {
+      //     title: "商品ID",
+      //     key: "goods_id",
+      //     width: 50,
+      //     align: "center"
+      //   },
+      //   {
+      //     title: "商品名称",
+      //     key: "goods_name",
+      //     align: "center",
+      //     width: 200
+      //   },
+      //   {
+      //     title: "商品图片",
+      //     key: "goods_img",
+      //     align: "center",
+      //     width: "136px",
+      //     render: (h, params) => {
+      //       return h("img", {
+      //         attrs: {
+      //           src: imgServer + params.row.goods_img[0]
+      //         },
+      //         style: {
+      //           display: "block",
+      //           width: "100px",
+      //           maxHeight: "100px"
+      //         }
+      //       });
+      //     }
+      //   },
+      //   {
+      //     title: "价格",
+      //     key: "goods_price",
+      //     align: "center"
+      //   },
+      //   {
+      //     title: "商品类目",
+      //     key: "goods_type",
+      //     align: "center"
+      //   },
+      //   {
+      //     title: "商品颜色",
+      //     key: "goods_color",
+      //     align: "center"
+      //   },
+      //   {
+      //     title: "商品尺码",
+      //     key: "goods_capacity",
+      //     align: "center"
+      //   },
+      //   {
+      //     title: "数量",
+      //     key: "goods_quantity",
+      //     align: "center"
+      //   },
+      //   {
+      //     title: "商品积分",
+      //     key: "goods_integral",
+      //     align: "center"
+      //   }
+      // ],
       proList: [],
       searchConName: "",
       tempList: []
@@ -328,5 +393,12 @@ export default {
 <style lang="less" scoped>
 .olabel {
   margin-top: 5px;
+}
+.dataBox{
+  /deep/.ivu-col img{
+    display: block;
+    width: 100px;
+    maxHeight: 100px;
+  }
 }
 </style>

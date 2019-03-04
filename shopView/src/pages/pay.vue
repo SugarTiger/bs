@@ -40,7 +40,7 @@
                 </ul>
             </div>
             <div class="wd_pay">
-                <h2>文的支付</h2>
+                <h2>微动支付</h2>
                 <ul class="pay_list">
                     <li class="active">
                         <div class="checkbox">
@@ -48,10 +48,11 @@
                             <input type="radio" name="pay" value="0"  checked='checked'>
                         </div>
                         <span class="bank_name"><img src="../assets/images/js_icon.png" alt="">余额支付</span>
-                        <span class="card">余额为：4665 元</span>
+                        <span class="card">余额为：<span :style="{color:balance<orderInfo.order_total_price?'red':'auto'}">{{balance}}</span> 元</span>
                         <span class="max">单笔限额1万</span>
                         <em>优惠</em>
                         <span class="highest">随机减最高999</span>
+                        <span style="color:red;margin-left:10px;" v-if="balance<orderInfo.order_total_price">余额不足，请联系客服充值！</span>
                     </li>
                 </ul>
                 <form class="paying" v-on:submit.prevent="paying">

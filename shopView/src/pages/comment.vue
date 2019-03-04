@@ -85,9 +85,9 @@ import { imgServer } from "@/utils/config";
             }
             seleobj.each(function (index) {
                 if (index > x) {
-                    $(this).css('background-image', 'url(images/kx_icon.png)');
+                    $(this).css('background-image', 'url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABEAAAAQCAYAAADwMZRfAAABGElEQVQ4jZ3TzypFURTH8c853XSFbhSlDP0Jd+ANjBFRShmbGisyNPAQxhgwYuJPiYEHQG54Bq+wDe460uWei1+d1l5r//qeddbZm3LV8IS+doaUkrwDZBP3Ef+lGq6Q47pdNymlUsguFmO9gu2/QooussizyL91k1JSwQwmMRbPQHzCHorXJOzjONbveMFrlmWNDLd4xgHewtBJAxjHBkZzzGEY/b8ECF8/BjFfFLtxiqVfQpZxgmrrYLtwhNUOgDUchv/Hv9OD8w6QM1SL5KcTO6Z5zMvUCN+nWiF1PHzJK5iNWOgR02WQ6YDkWMeF5vQvNGeRx369DDKFCVxiCAvYijgS9dHwtdUddtDbZr9X807dFIWUkg/GiUPVjF53lQAAAABJRU5ErkJggg==)');
                 } else {
-                    $(this).css('background-image', 'url(images/hx_icon.png)');
+                    $(this).css('background-image', 'url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABIAAAASCAYAAABWzo5XAAACWElEQVQ4jX2SMW8UVxSFv/NmdmcWeZHXMlawkKAAJJxUNChFElHSpUBWCpD4D0jULpHo+AMgQQWNhRAUNJHchChIpIiDcNIlhESRveAxO+OdeYdibWmNGN/q3XfPve+c8644JAy6CxnANagEbsOmhw16DL0wM3MB4F5R/AzstGGTtsIKhJk8PxGk6wHOd0L45aumefdjC6tWRktwpEqS77C/AYhp+u1SVf0LFJ/DhzY2McsWsS8LFgQL2Jdjli2utPQIJqY+he7m3FzW3d3NRtIg1PUlSTeA43vYf6J9y2n6pGdv7Xa71dzmZnUJdgXWCqSne70vQgjnon1W0hnssxG+FCxOya8NbwL8hvTa9kaQXscYf/9jNHqrO7Ozs52quibpiuGEIPfky7ufkR6ZMKgMpeAv2/fHWXY3nBoOi5Akz6L9CikzHAXyFv8Ck4eOImXRfhWS5Nmp4bAIF6FOi2IjwG3Za8DOYYu3V9uRvRbgdloUGxehTgAeQvNDXW+Ok+TvIJ3zxOC2HRsLXjQx3szK8sUyVPtUAViGMi/Ll5ZWgfdtjID3llbzsny5DOW05v3w1mDQEGPjQ6QZTIzN1mDQMIU7sNl5XaeSjk3dGxjvnTuABCnSfF7XB3oPJJ0Y0wjHmPgzEvxv+0+BkU4b5vdqC50Y2wfJTiz1Q4xvkdYtrbppfkrBdZp+Lft77KUYQl920jpoFMK4a/8qeOQYn3fL8r91+ACwVFVvxnm+JumC4OQohPEBEtPJA0hG/f6strfLq/Dh030y6B4ccb+f97a3h8vQ7Nc+AqpZA2ipV2GwAAAAAElFTkSuQmCC)');
                 }
             });
         });
@@ -123,7 +123,7 @@ export default {
             setgrade($(this), 'mouseenter', $('.describe>ul>li'));
             setgrade($(this), 'click', $('.describe>ul>li'), 'describe');
             $('.describe>ul>li').mouseleave(function () {
-                $('.describe>ul>li').css('background-image', 'url(images/kx_icon.png)');
+                $('.describe>ul>li').css('background-image', 'url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABEAAAAQCAYAAADwMZRfAAABGElEQVQ4jZ3TzypFURTH8c853XSFbhSlDP0Jd+ANjBFRShmbGisyNPAQxhgwYuJPiYEHQG54Bq+wDe460uWei1+d1l5r//qeddbZm3LV8IS+doaUkrwDZBP3Ef+lGq6Q47pdNymlUsguFmO9gu2/QooussizyL91k1JSwQwmMRbPQHzCHorXJOzjONbveMFrlmWNDLd4xgHewtBJAxjHBkZzzGEY/b8ECF8/BjFfFLtxiqVfQpZxgmrrYLtwhNUOgDUchv/Hv9OD8w6QM1SL5KcTO6Z5zMvUCN+nWiF1PHzJK5iNWOgR02WQ6YDkWMeF5vQvNGeRx369DDKFCVxiCAvYijgS9dHwtdUddtDbZr9X807dFIWUkg/GiUPVjF53lQAAAABJRU5ErkJggg==)');
             });
         });
     },
@@ -385,7 +385,7 @@ export default {
                                 width: 18px;
                                 height: 18px;
                                 margin: 0 1px;
-                                background-image: url(../assets/images/kx_icon.png);
+                                background-image: url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABIAAAASCAYAAABWzo5XAAACWElEQVQ4jX2SMW8UVxSFv/NmdmcWeZHXMlawkKAAJJxUNChFElHSpUBWCpD4D0jULpHo+AMgQQWNhRAUNJHchChIpIiDcNIlhESRveAxO+OdeYdibWmNGN/q3XfPve+c8644JAy6CxnANagEbsOmhw16DL0wM3MB4F5R/AzstGGTtsIKhJk8PxGk6wHOd0L45aumefdjC6tWRktwpEqS77C/AYhp+u1SVf0LFJ/DhzY2McsWsS8LFgQL2Jdjli2utPQIJqY+he7m3FzW3d3NRtIg1PUlSTeA43vYf6J9y2n6pGdv7Xa71dzmZnUJdgXWCqSne70vQgjnon1W0hnssxG+FCxOya8NbwL8hvTa9kaQXscYf/9jNHqrO7Ozs52quibpiuGEIPfky7ufkR6ZMKgMpeAv2/fHWXY3nBoOi5Akz6L9CikzHAXyFv8Ck4eOImXRfhWS5Nmp4bAIF6FOi2IjwG3Za8DOYYu3V9uRvRbgdloUGxehTgAeQvNDXW+Ok+TvIJ3zxOC2HRsLXjQx3szK8sUyVPtUAViGMi/Ll5ZWgfdtjID3llbzsny5DOW05v3w1mDQEGPjQ6QZTIzN1mDQMIU7sNl5XaeSjk3dGxjvnTuABCnSfF7XB3oPJJ0Y0wjHmPgzEvxv+0+BkU4b5vdqC50Y2wfJTiz1Q4xvkdYtrbppfkrBdZp+Lft77KUYQl920jpoFMK4a/8qeOQYn3fL8r91+ACwVFVvxnm+JumC4OQohPEBEtPJA0hG/f6strfLq/Dh030y6B4ccb+f97a3h8vQ7Nc+AqpZA2ipV2GwAAAAAElFTkSuQmCC);
                                 background-position: top;
                                 background-repeat: no-repeat;
                                 cursor: pointer;

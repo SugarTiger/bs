@@ -28,7 +28,7 @@
                     <h3>{{orderInfo.order_status | orderStatus}}</h3>
                 </div>
                 <div>
-                    <h5 v-if="orderInfo.order_status===5">订单已经完成，感谢您在文的商城购物，欢迎您对本次交易及所购商品进行评价</h5>
+                    <h5 v-if="orderInfo.order_status===5">订单已经完成，感谢您在微动商城购物，欢迎您对本次交易及所购商品进行评价</h5>
                     <ul>
                         <li :class="{done:orderInfo.order_status>0}">
                             <span>提交订单</span>
