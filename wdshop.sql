@@ -10,7 +10,7 @@ Target Server Type    : MYSQL
 Target Server Version : 50714
 File Encoding         : 65001
 
-Date: 2019-01-09 00:32:02
+Date: 2019-03-05 00:35:23
 */
 
 SET FOREIGN_KEY_CHECKS=0;
@@ -25,7 +25,7 @@ CREATE TABLE `wd_action` (
   `action_admin` varchar(100) NOT NULL,
   `action_name` varchar(255) NOT NULL,
   PRIMARY KEY (`action_id`)
-) ENGINE=MyISAM AUTO_INCREMENT=141 DEFAULT CHARSET=utf8;
+) ENGINE=MyISAM AUTO_INCREMENT=142 DEFAULT CHARSET=utf8;
 
 -- ----------------------------
 -- Records of wd_action
@@ -161,6 +161,7 @@ INSERT INTO `wd_action` VALUES ('137', '2019-01-08 16:27:49', 'root', '添加商
 INSERT INTO `wd_action` VALUES ('138', '2019-01-08 16:28:13', 'root', '管理员修改用户余额');
 INSERT INTO `wd_action` VALUES ('139', '2019-01-08 16:28:27', 'root', '操作管理员状态');
 INSERT INTO `wd_action` VALUES ('140', '2019-01-08 16:28:30', 'root', '操作管理员状态');
+INSERT INTO `wd_action` VALUES ('141', '2019-02-20 16:19:04', 'root', '更新订单（发货）');
 
 -- ----------------------------
 -- Table structure for wd_address
@@ -226,7 +227,7 @@ CREATE TABLE `wd_cart` (
 -- ----------------------------
 -- Records of wd_cart
 -- ----------------------------
-INSERT INTO `wd_cart` VALUES ('1', '3', '1797', '1');
+INSERT INTO `wd_cart` VALUES ('1', '6', '5149', '1');
 
 -- ----------------------------
 -- Table structure for wd_cart_goods
@@ -253,6 +254,9 @@ CREATE TABLE `wd_cart_goods` (
 -- ----------------------------
 -- Records of wd_cart_goods
 -- ----------------------------
+INSERT INTO `wd_cart_goods` VALUES ('1', '9', 'ASICS亚瑟士新款专业稳定跑鞋男士轻便透气运动鞋T8D0Q-211', '亚瑟士', '599', '白色', '/assets/uploads/7796301169378743.jpg,/assets/uploads/2018459861933808.jpg,/assets/uploads/6644663450217063.jpg', '100', '44', '3');
+INSERT INTO `wd_cart_goods` VALUES ('1', '22', '阿迪达斯官方 neo 男女 CLEAN 休闲鞋', '阿迪达斯', '628', '黑色', '/assets/uploads/0402.jpg,/assets/uploads/0401.jpg,/assets/uploads/0403.jpg', '10', '42', '2');
+INSERT INTO `wd_cart_goods` VALUES ('1', '23', 'test222', '阿迪达斯', '299', '黑色', '/assets/uploads/37710045254842917.jpg', '0', '42', '1');
 
 -- ----------------------------
 -- Table structure for wd_comment
@@ -329,7 +333,7 @@ CREATE TABLE `wd_info` (
 -- ----------------------------
 -- Records of wd_info
 -- ----------------------------
-INSERT INTO `wd_info` VALUES ('2018-03-19', '/assets/uploads/650261511599129.jpg,/assets/uploads/7955824374036844.jpg,/assets/uploads/02520509167109597.jpg', '1', '/assets/uploads/08881343268700848.png', '1', '地址：广东省广州市从化区经济开发区高技术产业园广从南路548号 | 电话：020－87818918 传真：87818020 邮编：510990 | 网站公安备案编号：4401840100050 ', '1', '/assets/ad/ad_b.png,/assets/ad/ad_hot.png,/assets/ad/ad_new.png,/assets/ad/ad_t.png', '9,9,9');
+INSERT INTO `wd_info` VALUES ('2018-03-19', '/assets/uploads/650261511599129.jpg,/assets/uploads/7955824374036844.jpg,/assets/uploads/02520509167109597.jpg', '1', '/assets/uploads/08881343268700848.png', '3', '地址：广东省广州市从化区经济开发区高技术产业园广从南路548号 | 电话：020－87818918 传真：87818020 邮编：510990 | 网站公安备案编号：4401840100050 ', '1', '/assets/ad/ad_b.png,/assets/ad/ad_hot.png,/assets/ad/ad_new.png,/assets/ad/ad_t.png', '9,9,9');
 
 -- ----------------------------
 -- Table structure for wd_order
@@ -359,12 +363,13 @@ CREATE TABLE `wd_order` (
   PRIMARY KEY (`order_id`),
   KEY `fk_wd_order_wd_user` (`user_id`),
   CONSTRAINT `fk_wd_order_wd_user` FOREIGN KEY (`user_id`) REFERENCES `wd_user` (`user_id`) ON DELETE NO ACTION ON UPDATE NO ACTION
-) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8;
 
 -- ----------------------------
 -- Records of wd_order
 -- ----------------------------
-INSERT INTO `wd_order` VALUES ('2', '2019-01-08 16:23:03', '2019-01-08 16:23:14', '0', null, '0', '0', '1280', '', '2', '1', '测试员1', '13246851899', '广东广州大学华软软件学院', null, null, null, null, '1', null);
+INSERT INTO `wd_order` VALUES ('2', '2019-01-08 16:23:03', '2019-01-08 16:23:14', '0', null, '0', '0', '1280', '', '4', '1', '测试员1', '13246851899', '广东广州大学华软软件学院', '2019-02-20 16:19:04', null, '21233153454153531', '中通', '1', '2019-02-20 16:19:16');
+INSERT INTO `wd_order` VALUES ('3', '2019-02-20 14:42:49', '2019-02-20 15:15:20', '0', null, '0', '0', '599', '', '2', '1', '测试员1', '13246851899', '广东广州大学华软软件学院', null, null, null, null, '9', null);
 
 -- ----------------------------
 -- Table structure for wd_order_goods
@@ -392,6 +397,7 @@ CREATE TABLE `wd_order_goods` (
 -- Records of wd_order_goods
 -- ----------------------------
 INSERT INTO `wd_order_goods` VALUES ('2', '20', 'Nike 耐克官方NIKE EBERNON LOW 男子运动鞋AQ1775', '耐克', '1280', '白色', '/assets/uploads/0501.jpg,/assets/uploads/0502.jpg,/assets/uploads/0503.jpg', '11', '42', '1');
+INSERT INTO `wd_order_goods` VALUES ('3', '9', 'ASICS亚瑟士新款专业稳定跑鞋男士轻便透气运动鞋T8D0Q-211', '亚瑟士', '599', '白色', '/assets/uploads/7796301169378743.jpg,/assets/uploads/2018459861933808.jpg,/assets/uploads/6644663450217063.jpg', '100', '44', '1');
 
 -- ----------------------------
 -- Table structure for wd_user
@@ -415,4 +421,4 @@ CREATE TABLE `wd_user` (
 -- ----------------------------
 -- Records of wd_user
 -- ----------------------------
-INSERT INTO `wd_user` VALUES ('1', 'test001', '2018-03-19 18:18:06', 'e10adc3949ba59abbe56e057f20f883e', '18', '13246851899', '1', '123456789@qq.com', '/assets/uploads/header.jpg', '100', 'e10adc3949ba59abbe56e057f20f883e');
+INSERT INTO `wd_user` VALUES ('1', 'test001', '2018-03-19 18:18:06', 'e10adc3949ba59abbe56e057f20f883e', '18', '13246851899', '1', '123456789@qq.com', '/assets/uploads/header.jpg', '99409', 'e10adc3949ba59abbe56e057f20f883e');
