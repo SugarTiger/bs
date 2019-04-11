@@ -17,10 +17,10 @@
                         <button @click="searchPro">搜索</button>
                     </div>
                 </div>
-                <div class="header_ad">
+                <!-- <div class="header_ad">
                   <router-link to="/shop_list"><img src="../assets/images/pro1.png" alt=""></router-link>
                   <router-link to="/shop_list"><img src="../assets/images/pro2.png" alt=""></router-link>
-                </div>
+                </div> -->
             </div>
         </div>
 </template>
