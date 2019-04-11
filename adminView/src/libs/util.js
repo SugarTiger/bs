@@ -41,7 +41,6 @@ util.ajax.interceptors.request.use(
     config => {
         if (window) {
             let token = getToken()
-            console.log("token:", token)
             if (token) {
                 // 判断是否存在token，如果存在的话，则每个http header都加上token
                 config.headers.Authorization = `Bearer ${token}`;
@@ -56,7 +55,6 @@ util.ajax.interceptors.request.use(
 )
 // http 响应 response 拦截器
 util.ajax.interceptors.response.use((response) => {
-    console.log(response.data)
     if (response.data.status !== 1) {
         if (response.data.msg) {
             iView.Message.error(response.data.msg);

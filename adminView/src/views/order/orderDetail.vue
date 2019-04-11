@@ -355,16 +355,6 @@ export default {
           this.$router.push({name:'orderList'})
         }
       })
-      // 查询快递的 API接口
-      // this.axios.get('http://v.juhe.cn/exp/index',{
-      //   params:{
-      //     com:this.wlCode,
-      //     no:this.wlNum,
-      //     key:"e63c8ef7b55e984ac78f1b1589abeaa6"
-      //   }
-      // }).then(res=>{
-      //   console.log(res)
-      // })
     },
     seletWl(wl) {
       var tmp = wl.split("-");
