@@ -33,10 +33,10 @@
               <Col span="2">
                 <h3>商品ID</h3>
               </Col>
-              <Col span="5">
+              <Col span="6">
                 <h3>商品名称</h3>
               </Col>
-              <Col span="5">
+              <Col span="6">
                 <h3>商品图片</h3>
               </Col>
               <Col span="2">
@@ -54,9 +54,9 @@
               <Col span="2">
                 <h3>数量</h3>
               </Col>
-              <Col span="2">
+              <!-- <Col span="2">
                 <h3>商品积分</h3>
-              </Col>
+              </Col> -->
             </Row>
             <Row
               type="flex"
@@ -68,10 +68,10 @@
               <Col span="2">
                 {{item.goods_id}}
               </Col>
-              <Col span="5">
+              <Col span="6">
                 {{item.goods_name}}
               </Col>
-              <Col span="5">
+              <Col span="6">
                 <img :src="imgServer+item.goods_img[0]"/>
               </Col>
               <Col span="2">
@@ -89,9 +89,9 @@
               <Col span="2">
                 {{item.goods_quantity}}
               </Col>
-              <Col span="2">
+              <!-- <Col span="2">
                 {{item.goods_integral}}
-              </Col>
+              </Col> -->
             </Row>
         </Row>
 
@@ -355,16 +355,6 @@ export default {
           this.$router.push({name:'orderList'})
         }
       })
-      // 查询快递的 API接口
-      // this.axios.get('http://v.juhe.cn/exp/index',{
-      //   params:{
-      //     com:this.wlCode,
-      //     no:this.wlNum,
-      //     key:"e63c8ef7b55e984ac78f1b1589abeaa6"
-      //   }
-      // }).then(res=>{
-      //   console.log(res)
-      // })
     },
     seletWl(wl) {
       var tmp = wl.split("-");

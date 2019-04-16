@@ -105,13 +105,13 @@
                             </Col>
                         </Row>
                     </FormItem>
-                    <FormItem label="商品积分" prop="goods_integral">
+                    <!-- <FormItem label="商品积分" prop="goods_integral">
                       <Row>
                           <Col span="6">
                             <Input v-model="formValidate.goods_integral" placeholder="商品积分,默认为0"></Input>
                         </Col>
                       </Row>
-                    </FormItem>
+                    </FormItem> -->
                     <FormItem label="商品详情" prop="goods_details">
                       <div ref="editor" style="text-align:left;width:90%;"></div>
                     </FormItem>

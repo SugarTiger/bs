@@ -19,9 +19,9 @@
           <Col span="2"><h3>在售状态</h3></Col>
           <Col span="2"><h3>类目</h3></Col>
           <Col span="1"><h3>颜色</h3></Col>
-          <Col span="1"><h3>尺码</h3></Col>
+          <Col span="2"><h3>尺码</h3></Col>
           <Col span="2"><h3>销售量</h3></Col>
-          <Col span="1"><h3>积分</h3></Col>
+          <!-- <Col span="1"><h3>积分</h3></Col> -->
           <Col span="2"><h3>操作</h3></Col>
         </Row>
         <Row class="dataBox" type="flex" justify="center" align="middle" v-for="(item,i) in proList">
@@ -36,9 +36,9 @@
           <Col span="2" :class="{active:item.status==='在售'}">{{item.status}}</Col>
           <Col span="2">{{item.type}}</Col>
           <Col span="1">{{item.color}}</Col>
-          <Col span="1">{{item.capacity}}</Col>
+          <Col span="2">{{item.capacity}}</Col>
           <Col span="2">{{item.sales}}</Col>
-          <Col span="1">{{item.integral}}</Col>
+          <!-- <Col span="1">{{item.integral}}</Col> -->
           <Col span="2">
             <div class="action">
                <Button type="primary" size="small" @click="toUpdatePro(item.proId)">编辑商品</Button>
@@ -112,188 +112,188 @@ export default {
     return {
       imgServer,
       loading: true,
-      proColumns: [
-        {
-          title: "商品ID",
-          key: "proId",
-          width: 50,
-          align: "center"
-        },
-        {
-          title: "商品名称",
-          key: "proName",
-          align: "center",
-          width: 200
-        },
-        {
-          title: "商品图片",
-          key: "img",
-          align: "center",
-          width: "136px",
-          render: (h, params) => {
-            return h("img", {
-              attrs: {
-                src: imgServer + params.row.img
-              },
-              style: {
-                display: "block",
-                width: "100px",
-                maxHeight: "100px"
-              }
-            });
-          }
-        },
-        {
-          title: "市场价格",
-          key: "marketPrice",
-          align: "center"
-        },
-        {
-          title: "本店价格",
-          key: "price",
-          align: "center"
-        },
-        {
-          title: "库存量",
-          key: "inventory",
-          align: "center"
-        },
-        {
-          title: "在售状态",
-          key: "status",
-          align: "center",
-          render: (h, params) => {
-            return h(
-              "p",
-              {
-                style: {
-                  color: params.row.status == "在售" ? "#080" : "#bd0007"
-                }
-              },
-              params.row.status
-            );
-          },
-          filters: [
-            {
-              label: "在售",
-              value: "在售"
-            },
-            {
-              label: "已下架",
-              value: "已下架"
-            }
-          ],
-          filterMultiple: false,
-          filterMethod(value, row) {
-            return row.status === value;
-          }
-        },
-        {
-          title: "商品类目",
-          key: "type",
-          align: "center"
-        },
-        {
-          title: "商品颜色",
-          key: "color",
-          align: "center"
-        },
-        {
-          title: "商品尺码",
-          key: "capacity",
-          align: "center"
-        },
-        {
-          title: "商品销售量",
-          key: "sales",
-          align: "center"
-        },
-        {
-          title: "商品积分",
-          key: "integral",
-          align: "center"
-        },
-        {
-          title: "操作",
-          key: "action",
-          align: "center",
-          width: "90px",
-          render: (h, params) => {
-            return h(
-              "div",
-              {
-                style: {
-                  display: "flex",
-                  flexDirection: "column",
-                  alignItems: "center",
-                  padding: "10px"
-                }
-              },
-              [
-                h(
-                  "Button",
-                  {
-                    props: {
-                      type: "primary"
-                    },
-                    on: {
-                      click: () => {
-                        this.$router.push({
-                          name: "updatePro",
-                          query: {
-                            proId: params.row.proId
-                          }
-                        });
-                      }
-                    }
-                  },
-                  "编辑商品"
-                ),
-                h(
-                  "Button",
-                  {
-                    props: {
-                      type: params.row.status == "在售" ? "warning" : "info"
-                    },
-                    style: {
-                      marginTop: "10px"
-                    },
-                    on: {
-                      click: () => {
-                        this.changeStatus(params.row);
-                      }
-                    }
-                  },
-                  params.row.status == "在售" ? "下架商品" : "上架商品"
-                )
-                // h(
-                //   "Button",
-                //   {
-                //     props: {
-                //       type: "error"
-                //     },
-                //     style: {
-                //           marginTop: "10px"
-                //     },
-                //     on: {
-                //       click: () => {
-                //         this.$Modal.confirm({
-                //           title: "提示",
-                //           content: "确定删除商品？",
-                //           onOk: () => {
-                //             this.delPro(params.row.proId)
-                //           }
-                //         });
-                //       }
-                //     }
-                //   },
-                //   "删除商品"
-                // )
-              ]
-            );
-          }
-        }
-      ],
+      // proColumns: [
+      //   {
+      //     title: "商品ID",
+      //     key: "proId",
+      //     width: 50,
+      //     align: "center"
+      //   },
+      //   {
+      //     title: "商品名称",
+      //     key: "proName",
+      //     align: "center",
+      //     width: 200
+      //   },
+      //   {
+      //     title: "商品图片",
+      //     key: "img",
+      //     align: "center",
+      //     width: "136px",
+      //     render: (h, params) => {
+      //       return h("img", {
+      //         attrs: {
+      //           src: imgServer + params.row.img
+      //         },
+      //         style: {
+      //           display: "block",
+      //           width: "100px",
+      //           maxHeight: "100px"
+      //         }
+      //       });
+      //     }
+      //   },
+      //   {
+      //     title: "市场价格",
+      //     key: "marketPrice",
+      //     align: "center"
+      //   },
+      //   {
+      //     title: "本店价格",
+      //     key: "price",
+      //     align: "center"
+      //   },
+      //   {
+      //     title: "库存量",
+      //     key: "inventory",
+      //     align: "center"
+      //   },
+      //   {
+      //     title: "在售状态",
+      //     key: "status",
+      //     align: "center",
+      //     render: (h, params) => {
+      //       return h(
+      //         "p",
+      //         {
+      //           style: {
+      //             color: params.row.status == "在售" ? "#080" : "#bd0007"
+      //           }
+      //         },
+      //         params.row.status
+      //       );
+      //     },
+      //     filters: [
+      //       {
+      //         label: "在售",
+      //         value: "在售"
+      //       },
+      //       {
+      //         label: "已下架",
+      //         value: "已下架"
+      //       }
+      //     ],
+      //     filterMultiple: false,
+      //     filterMethod(value, row) {
+      //       return row.status === value;
+      //     }
+      //   },
+      //   {
+      //     title: "商品类目",
+      //     key: "type",
+      //     align: "center"
+      //   },
+      //   {
+      //     title: "商品颜色",
+      //     key: "color",
+      //     align: "center"
+      //   },
+      //   {
+      //     title: "商品尺码",
+      //     key: "capacity",
+      //     align: "center"
+      //   },
+      //   {
+      //     title: "商品销售量",
+      //     key: "sales",
+      //     align: "center"
+      //   },
+      //   {
+      //     title: "商品积分",
+      //     key: "integral",
+      //     align: "center"
+      //   },
+      //   {
+      //     title: "操作",
+      //     key: "action",
+      //     align: "center",
+      //     width: "90px",
+      //     render: (h, params) => {
+      //       return h(
+      //         "div",
+      //         {
+      //           style: {
+      //             display: "flex",
+      //             flexDirection: "column",
+      //             alignItems: "center",
+      //             padding: "10px"
+      //           }
+      //         },
+      //         [
+      //           h(
+      //             "Button",
+      //             {
+      //               props: {
+      //                 type: "primary"
+      //               },
+      //               on: {
+      //                 click: () => {
+      //                   this.$router.push({
+      //                     name: "updatePro",
+      //                     query: {
+      //                       proId: params.row.proId
+      //                     }
+      //                   });
+      //                 }
+      //               }
+      //             },
+      //             "编辑商品"
+      //           ),
+      //           h(
+      //             "Button",
+      //             {
+      //               props: {
+      //                 type: params.row.status == "在售" ? "warning" : "info"
+      //               },
+      //               style: {
+      //                 marginTop: "10px"
+      //               },
+      //               on: {
+      //                 click: () => {
+      //                   this.changeStatus(params.row);
+      //                 }
+      //               }
+      //             },
+      //             params.row.status == "在售" ? "下架商品" : "上架商品"
+      //           )
+      //           // h(
+      //           //   "Button",
+      //           //   {
+      //           //     props: {
+      //           //       type: "error"
+      //           //     },
+      //           //     style: {
+      //           //           marginTop: "10px"
+      //           //     },
+      //           //     on: {
+      //           //       click: () => {
+      //           //         this.$Modal.confirm({
+      //           //           title: "提示",
+      //           //           content: "确定删除商品？",
+      //           //           onOk: () => {
+      //           //             this.delPro(params.row.proId)
+      //           //           }
+      //           //         });
+      //           //       }
+      //           //     }
+      //           //   },
+      //           //   "删除商品"
+      //           // )
+      //         ]
+      //       );
+      //     }
+      //   }
+      // ],
       proList: [],
       searchConName: "",
       tempList: []

@@ -57,9 +57,14 @@ export default {
   },
   mounted() {
     this.axios.get("/getAdminInfo").then(res => {
-      this.name = res.data.admin_name;
-      this.type = res.data.admin_type;
-      this.header = imgServer+res.data.admin_header;
+    if(res.status===401){
+        this.$store.commit("logout");
+        this.$router.push({path: '/login'})
+    }else{
+        this.name = res.data.admin_name;
+        this.type = res.data.admin_type;
+        this.header = imgServer+res.data.admin_header;
+    }
     });
   }
 };

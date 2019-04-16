@@ -70,7 +70,9 @@
               </Col>
               <Col span="5">
                 <div class="action">
-                  <Button @click="toOrderDetail(item)"type='info'>查看订单详情</Button>
+                  <Button @click="toOrderDetail(item)" type='info'>订单详情</Button>
+
+                  <Button @click="delOrder(item)" type='error'>删除订单</Button>
                 </div>
               </Col>
             </Row>
@@ -245,6 +247,22 @@ export default {
                                 userId:orderInfo.user_id
                             }
                         })
+    },
+    delOrder(orderInfo){
+      console.log(orderInfo)
+      this.axios
+        .post("/delOrder", {
+              orderId: orderInfo.order_id,
+              userId:orderInfo.user_id
+        })
+        .then(res => {
+          if (res.status === 1) {
+            this.$Notice.success({
+              title: "商品评论删除成功"
+            });
+            this.getorderList();
+          }
+        });
     },
     getOrderList() {
       this.axios.get("/getAllOrderList").then(res => {

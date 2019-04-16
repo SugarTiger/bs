@@ -192,6 +192,9 @@ class orderController {
   static async delOrder(ctx) {
     try {
       let user_id = ctx.token.id;
+      if(ctx.request.body.userId){
+        user_id = ctx.request.body.userId;
+      }
       let order_id = ctx.request.body.orderId;
       let result1 = await wdOrderGoods.destroy({
         where: {

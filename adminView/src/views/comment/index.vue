@@ -8,72 +8,77 @@
         </Row>
         <Row :style="{marginTop:'10px'}">
             <!-- <Table ref="table" :loading="loading"  :border="true" :columns="commentColumns" :data="proCommentList"></Table> -->
-          <Row type="flex" justify="center" align="middle" class="headerBox">
-            <Col span="1">
-              <h3>评论ID</h3>
-            </Col>
-            <Col span="2">
-              <h3>商品ID</h3>
-            </Col>
-            <Col span="2">
-              <h3>用户ID</h3>
-            </Col>
-            <Col span="2">
-              <h3>用户名</h3>
-            </Col>
-            <Col span="3">
-              <h3>用户头像</h3>
-            </Col>
-            <Col span="5">
-              <h3>评论内容</h3>
-            </Col>
-            <Col span="4">
-              <h3>评论日期</h3>
-            </Col>
-            <Col span="2">
-              <h3>评分</h3>
-            </Col>
-            <Col span="3">
-              <h3>操作</h3>
-            </Col>
-          </Row>
-          <Row
+            <Row type="flex" justify="center" align="middle" class="headerBox">
+              <Col span="2">
+                <h3>评论ID</h3>
+              </Col>
+              <Col span="3">
+                <h3>商品ID</h3>
+              </Col>
+              <Col span="2">
+                <h3>用户ID</h3>
+              </Col>
+              <Col span="3">
+                <h3>用户名</h3>
+              </Col>
+              <Col span="3">
+                <h3>用户头像</h3>
+              </Col>
+              <Col span="2">
+                <h3>评论内容</h3>
+              </Col>
+              <Col span="2">
+                <h3>评论日期</h3>
+              </Col>
+              <Col span="2">
+                <h3>评分</h3>
+              </Col>
+              <Col span="5">
+                <h3>操作</h3>
+              </Col>
+            </Row>
+          <template v-if="proCommentList.length>0">
+            
+            <Row
               type="flex"
               justify="center"
               align="middle"
               class="dataBox"
               v-for="(item,i) in proCommentList"
-          >
-            <Col span="1">
-            {{item.comment_id}}
-            </Col>
-            <Col span="2">
-            {{item.goods_id}}
-            </Col>
-            <Col span="2">
-            {{item.user_id}}
-            </Col>
-            <Col span="2">
-              {{item.user_name}}
-            </Col>
-            <Col span="3">
-            <Avatar size="large" :src="imgServer+item.user_headurl"></Avatar>
-            </Col>
-            <Col span="5">
-            {{item.comment_content}}
-            </Col>
-            <Col span="4">
-            <span>{{item.comment_date|Format}}</span>
-            </Col>
-            <Col span="2">
-            {{item.comment_fraction}}
-            </Col>
-            <Col span="3">
-            <div class="action">
-              <Button type="error" @click="delComment(item)">删除评论</Button>
-            </div>
-            </Col>
-          </Row>
+              
+            >
+              <Col span="2">
+                {{item.comment_id}}
+              </Col>
+              <Col span="3">
+                {{item.goods_id}}
+              </Col>
+              <Col span="2">
+                {{item.user_id}}
+              </Col>
+              <Col span="3">
+                {{item.user_name}}
+              </Col>
+              <Col span="3">
+                <Avatar size="large" :src="imgServer+item.user_headurl"/>
+              </Col>
+              <Col span="2">
+                {{item.comment_content}}
+              </Col>
+              <Col span="2">
+                {{item.comment_date|dateFormat}}
+              </Col>
+              <Col span="2">
+                {{item.comment_fraction}}
+              </Col>
+              <Col span="5">
+                <div class="action">
+                  <Button @click="delComment(item)"type='error'>删除评论</Button>
+                </div>
+              </Col>
+            </Row>
+          </template>
+          <p v-else style="text-align:center;margin-top:10px;">暂无商品评论</p>
         </Row>
     </div>
 </template>
@@ -110,23 +115,24 @@ export default {
     },
     delComment(item) {
       this.$Modal.confirm({
-                          title: "提示",
-                          content: "确定删除评论？",
-                          onOk: () => {
-            this.axios
-        .post("/delProComment", {
-          commentId:item.comment_id
-        })
-        .then(res => {
-          if (res.status === 1) {
-            this.$Notice.success({
-              title: "商品评论删除成功"
-            });
-            this.getProCommentList();
-          }
-        });
-                          }
-                        });
+        title: "提示",
+        content: "确定删除评论？",
+        onOk: () => {
+          this.axios
+          .post("/delProComment", {
+            commentId:item.comment_id
+          })
+          .then(res => {
+            if (res.status === 1) {
+              this.$Notice.success({
+                title: "商品评论删除成功"
+              });
+              this.getProCommentList();
+            }
+          });
+        }
+      });
+      
     },
     handleCancel() {
       this.searchConName = "";
