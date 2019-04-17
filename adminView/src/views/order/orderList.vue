@@ -249,8 +249,11 @@ export default {
                         })
     },
     delOrder(orderInfo){
-      console.log(orderInfo)
-      this.axios
+      this.$Modal.confirm({
+        title: "提示",
+        content: "确定删除此订单？",
+        onOk: () => {
+          this.axios
         .post("/delOrder", {
               orderId: orderInfo.order_id,
               userId:orderInfo.user_id
@@ -258,11 +261,14 @@ export default {
         .then(res => {
           if (res.status === 1) {
             this.$Notice.success({
-              title: "商品评论删除成功"
+              title: "订单删除成功"
             });
-            this.getorderList();
+            this.getOrderList();
           }
         });
+        }
+      });
+      
     },
     getOrderList() {
       this.axios.get("/getAllOrderList").then(res => {

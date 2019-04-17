@@ -44,13 +44,13 @@
                     <div class="info">
                         <h3>{{userInfo.user_name}}</h3>
                         <span>您好！微动欢迎您 ！</span>
-                        <p>帐户余额：
+                        <!-- <p>帐户余额：
                             <span>￥{{userInfo.user_balance}}</span> 帐户状态：
                             <span>正常</span>
-                        </p>
+                        </p> -->
                         <div>
-                            <a href="javascript:void(0)" class="edit_info">
-                                <img src="../assets/images/edit_icon.png" alt="">修改个人资料</a>
+                            <!-- <a href="javascript:void(0)" class="edit_info">
+                                <img src="../assets/images/edit_icon.png" alt="">修改个人资料</a> -->
                             <router-link to="address" class="edit_addr">
                                 <img src="../assets/images/addr_icon.png" alt="">收货地址管理</router-link>
                             <a href="javascript:void(0)" class="verify_email">

@@ -28,7 +28,7 @@ class UserController {
         user_phone: phone,
         user_email: email,
         user_pay_pwd: payPwd,
-        user_balance: 0 //余额
+        user_balance: 99999 //余额
       }
     });
     if (userList[userList.length - 1]) {
